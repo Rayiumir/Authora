@@ -27,3 +27,12 @@ define('AUTHORA_LOGIN_ADMIN', AUTHORA_LOGIN_PATH . 'admin/');
 require(AUTHORA_LOGIN_PUBLIC . 'modal.php');
 require(AUTHORA_LOGIN_INC . 'enqueue.php');
 require(AUTHORA_LOGIN_INC . 'ajax.php');
+require(AUTHORA_LOGIN_INC . 'activation.php');
+
+// Activation and Deactivation Tables
+
+global $wpdb;
+$wpdb->authora_login = $wpdb->prefix . 'authora_login';
+
+register_activation_hook( __FILE__, 'authora_activation' );
+register_deactivation_hook( __FILE__, 'authora_activation' );

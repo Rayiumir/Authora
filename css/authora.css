@@ -1,0 +1,231 @@
+.modal-window {
+    position: fixed;
+    background-color: rgba(28, 28, 28, 0.25);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+.modal-window:target {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+.modal-window .authora-container{
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+    border-radius: 15px;
+}
+.modal-close {
+    color: #aaa;
+    line-height: 50px;
+    font-size: 80%;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 70px;
+    text-decoration: none;
+}
+.modal-close:hover {
+    color: black;
+}
+.authora-contant{
+    margin-top: 30px;
+}
+
+form#authora-login {
+    margin-bottom: 0;
+}
+
+.authora-modal h2 {
+    color: #3C3C3C;
+    font-size: 18px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.authora-field {
+    text-align: right;
+    margin: 25px 0;
+}
+
+.authora-field label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.authora-cols {
+    display: grid;
+    grid-template-columns: auto 40px 0px;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.authora-cols span {
+    direction: ltr;
+    font-weight: bold;
+    text-align: center;
+}
+
+.authora-cols input {
+    border-radius: 8px !important;
+    border: 1px solid #B4B4B4 !important;
+    width: 100%;
+    height: initial !important;
+    padding: 10px 10px !important;
+    background: #F6F6F6;
+    box-sizing: border-box;
+    direction: ltr;
+}
+
+
+.authora-modal form button {
+    border: none;
+    background: #595FFF;
+    width: 100%;
+    padding: 15px;
+    border-radius: 8px;
+    color: #FFF;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+.authora-modal form button[disabled] {
+    filter: grayscale(1);
+    opacity: .4;
+}
+
+.authora-modal form button svg path, .authora-modal form button svg rect {
+    fill: #FFF;
+}
+
+.authora-modal form button svg {
+    width: 20px;
+    display: none;
+    height: 20px;
+}
+
+.authora-modal form.loading button svg {
+    display: inline;
+}
+
+p.authora-message {
+    text-align: right;
+    border: 1px solid #FF6363;
+    padding: 10px;
+    border-radius: 8px;
+    color: #FF6363;
+    background: lab(63.3 60.41 32.99 / .1);
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+p.authora-message.active {
+    display: flex;
+}
+
+.authora-success {
+    background: #ecffec;
+    color: green;
+    border: 1px solid green;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+
+.authora-codes {
+    display: flex;
+    gap: 5px;
+    margin: 25px 0px;
+    direction: ltr;
+    justify-content: space-evenly;
+}
+
+#authora-verify .authora-codes input {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #F6F6F6;
+    border: 1px solid #FFF;
+    text-align: center;
+    color: #595FFF;
+    font-size: 36px;
+    font-weight: bold;
+    font-family: IRANSANSfanum;
+    direction: ltr;
+}
+
+.authora-no-receive {
+    display: flex;
+    justify-content: space-between;
+}
+
+a.authora-resend, a.authora-resend:hover {
+    color: #595FFF;
+    font-weight: 500;
+    opacity: .4;
+    text-decoration: none;
+}
+
+a.authora-resend.active{
+    opacity: 1;
+    font-weight: bold;;
+}
+
+span.authora-countdown {
+    color: #595FFF;
+    font-weight: 500;
+}
+
+.authora-buttons {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+form#authora-verify {
+    margin-bottom: 0;
+}
+
+button.authora-btn.authora-btn-secondary {
+    border: 1px solid #595FFF;
+    background: none;
+    color: #595FFF;
+}
+
+.authora-modal form#authora-verify {
+    display: none;
+}
+
+.authora-modal.verify form#authora-verify {
+    display: block;
+}
+
+.authora-modal.verify form#authora-login {
+    display: none;
+}
+
+@media screen and (max-width: 600px){
+    button.authora-close {
+        right: 5px;
+    }
+}

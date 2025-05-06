@@ -44,11 +44,13 @@ jQuery(document).ready(function ($) {
                     $('.authora-modal').addClass('verify');
                     $(".authora-codes input").eq(0).focus();
 
-                    $("#authora-verify input[name='phone']").val(result.data.phone);
+                    $("#authora-verify input[name='mobile']").val(result.data.mobile);
                     $("#authora-verify input[name='_wpnonce']").val(result.data._wpnonce);
 
                 } else {
-
+                    // Handle error case
+                    $(_message).addClass('active').find('span').text(result.data.message);
+                    console.log('Error: ' + result.data.message);  
                 }
             },
             complete: function () {

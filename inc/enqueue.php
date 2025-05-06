@@ -4,9 +4,9 @@ defined('ABSPATH') || exit;
 
 function authora_public_scripts(){
 
-    // if( is_user_logged_in(  ) ){
-    //     return;
-    // }
+    if( is_user_logged_in() ){
+        return;
+    }
 
     wp_enqueue_style(
         'authora-style',

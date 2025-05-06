@@ -28,6 +28,7 @@ require(AUTHORA_LOGIN_PUBLIC . 'modal.php');
 require(AUTHORA_LOGIN_INC . 'enqueue.php');
 require(AUTHORA_LOGIN_INC . 'ajax.php');
 require(AUTHORA_LOGIN_INC . 'activation.php');
+require(AUTHORA_LOGIN_INC . 'functions.php');
 
 // Activation and Deactivation Tables
 

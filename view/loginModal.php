@@ -1,4 +1,7 @@
 
+<?php
+$digits = 5;
+?>
 <div id="open-modal" class="modal-window">
   <div class="authora-container">
     <a href="#" title="Close" class="modal-close">
@@ -34,13 +37,9 @@
             <p class="authora-login-result">
                 کد 5 رقمی ارسال شده به شماره  را وارد کنید
             </p>
-            <div class="authora-codes">
+            <?php foreach( range( 1, $digits ) as $index ):?>
                 <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-                <input type="text" maxlength="1">
-            </div>
+            <?php endforeach;?>
             <div class="authora-no-receive">
                 <p>کد را دریافت نکردید؟</p>
                 <div>

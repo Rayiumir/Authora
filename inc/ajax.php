@@ -16,7 +16,7 @@ function authora_login() {
         wp_send_json_error( $result, 401 );
     }
 
-    $mobile = sanitize_mobile( $_REQUEST['mobile'] );
+    $mobile = sanitize_text_field( $_REQUEST['mobile'] );
 
     if( ! $mobile ){
         $result['message']  = 'موبایل صحیح نیست';
@@ -29,7 +29,7 @@ function authora_login() {
 
     $expired_at     = date( 'Y-m-d H:i:s', current_time('timestamp') + $expire );
 
-    $inserted       = authora_register_code( $phone, $code, $expired_at );
+    $inserted       = authora_register_code( $mobile, $code, $expired_at );
     
     if( is_wp_error( $inserted ) ){
         $result['message'] = $inserted->get_error_message();

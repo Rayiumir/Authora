@@ -1,9 +1,5 @@
 jQuery(document).ready(function ($) {
 
-    function toggle_form() {
-        $('.authora-modal').toggleClass('verify');
-    }
-
     function close_modal() {
         $('.authora-modal-container').removeClass('open');
     }
@@ -48,9 +44,16 @@ jQuery(document).ready(function ($) {
                     $("#authora-verify input[name='_wpnonce']").val(result.data._wpnonce);
 
                 } else {
-                    // Handle error case
-                    $(_message).addClass('active').find('span').text(result.data.message);
-                    console.log('Error: ' + result.data.message);  
+                    let result = xhr.responseJSON;
+                    let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+
+                    if (result && result.data && result.data.message) {
+                        message = result.data.message;
+                    } else if (xhr.status === 0) {
+                        message = 'ارتباط با سرور برقرار نشد.';
+                    }
+
+                    $(_message).addClass('active').find('span').text(message);
                 }
             },
             complete: function () {
@@ -60,10 +63,70 @@ jQuery(document).ready(function ($) {
             },
             error: function (xhr) {
                 let result = xhr.responseJSON;
-                $(_message).addClass('active').find('span').text(result.data.message);
+                let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+
+                if (result && result.data && result.data.message) {
+                    message = result.data.message;
+                } else if (xhr.status === 0) {
+                    message = 'ارتباط با سرور برقرار نشد.';
+                }
+
+                $(_message).addClass('active').find('span').text(message);
             },
         });
 
     });
-    
+
+    function toggle_form() {
+        $('.authora-modal').toggleClass('verify');
+    }
+
+    $('#authora-edit-number').click(toggle_form);
+
+    var countdown = 1000;
+    function coutndown_handle() {
+
+        if (countdown == 0) {
+            $('.authora-resend').addClass('active');
+        }
+
+        countdown--;
+
+        set_time(countdown);
+
+    }
+    setInterval(coutndown_handle, 1000);
+
+    function set_time(countdown) {
+
+        let remain = countdown >= 0 ? countdown : 0;
+
+        let minute = Math.floor(remain / 60);
+        minute = minute < 10 ? '0' + minute : minute;
+
+        let second = remain % 60;
+        second = second < 10 ? '0' + second : second;
+
+        let time = `${minute}:${second}`;
+
+        $('.authora-countdown').text(time);
+
+    }
+
+    $(document).on('focus', '.authora-codes input', function (e) {
+        $(this).select();
+    });
+
+    $(document).on('input', '.authora-codes input', function (e) {
+        let code = $(this).val().trim();
+        if (code.length) {
+            if ($(this).next()) {
+                $(this).next().focus();
+            }
+            if ($(this).index() >= $('.authora-codes input').length - 1) {
+                $('#authora-verify').submit();
+            }
+        }
+    });
+
 });

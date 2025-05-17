@@ -16,7 +16,7 @@ function authora_login() {
         wp_send_json_error( $result, 401 );
     }
 
-    $mobile = sanitize_text_field( $_REQUEST['mobile'] );
+    $mobile = sanitize_mobile( $_REQUEST['mobile'] );
 
     if( ! $mobile ){
         $result['message']  = 'موبایل صحیح نیست';

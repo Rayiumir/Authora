@@ -129,4 +129,64 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    $(document).on('click', 'a.authora-resend.active', function (e) {
+        e.preventDefault();
+        if (countdown <= 0) {
+            $('#authora-login').submit();
+        }
+    });
+
+    $(document).on('submit', '#authora-verify', function (e) {
+
+        e.preventDefault();
+
+        let code = '';
+        $(this).find('.authora-codes input').each(function () {
+            code += $(this).val();
+        });
+        $("#authora-verify input[name='code']").val(code);
+
+        let data = $(this).serialize();
+        let _this = $(this);
+        let _message = $(this).find('.authora-message');
+        let _message_s = $(this).find('.authora-success');
+        let _btn = $(this).find('button');
+
+        $.ajax({
+            type: 'POST',
+            url: authora.ajax_url,
+            data: data,
+            beforeSend: function () {
+                $(_this).addClass('loading');
+                $(_btn).attr('disabled', true);
+            },
+            success: function (result) {
+                console.log(result);
+                if (result.success) {
+                    $(_message_s).text(result.data.message).slideDown(500);
+                    location.reload();
+                } else {
+
+                }
+            },
+            complete: function () {
+                $(_this).removeClass('loading');
+                $(_btn).attr('disabled', false);
+            },
+            error: function (xhr) {
+                let result = xhr.responseJSON;
+                let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+
+                if (result && result.data && result.data.message) {
+                    message = result.data.message;
+                } else if (xhr.status === 0) {
+                    message = 'ارتباط با سرور برقرار نشد.';
+                }
+
+                $(_message).addClass('active').find('span').text(message);
+            },
+        });
+
+    });
+
 });

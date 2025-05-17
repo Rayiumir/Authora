@@ -46,3 +46,80 @@ function authora_login() {
 
 }
 add_action('wp_ajax_nopriv_authora_login', 'authora_login');
+
+function authora_verify(){
+    
+    $result = [
+        'message'   => 'خطایی رخ داده است'
+    ];
+
+    if(
+        ! isset( $_REQUEST['mobile'] ) ||
+        ! isset( $_REQUEST['code'] ) ||
+        ! isset( $_REQUEST['_wpnonce'] ) ||
+        ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'verify'.  $_REQUEST['mobile'] )
+    ){
+        wp_send_json_error( $result, 401 );
+    }
+
+    $mobile  = sanitize_mobile( $_REQUEST['mobile'] );
+
+    if( !$mobile ){
+        $result['message']  = 'تلفن صحیح نیست';
+        wp_send_json_error( $result, 401 );
+    }
+
+    $code   = sanitize_text_field( $_REQUEST['code'] );
+
+    global $wpdb;
+    $verify = $wpdb->get_row(
+        $wpdb->prepare(
+            "SELECT * FROM {$wpdb->authora_login} WHERE mobile = %s ORDER BY created_at DESC",
+            $mobile
+        )
+    );
+
+    if( !$verify ){
+        $result['message']  = 'درخواست احراز شما یافت نشد';
+        wp_send_json_error( $result, 401 );
+    }
+
+    if( $verify->code != $code ){
+        $result['message']  = 'کد ارسال اشتباه است، مجدد تلاش کنید';
+        wp_send_json_error( $result, 401 );
+    }
+
+    if( current_time('timestamp') >= strtotime( $verify->expired_at ) ){
+        $result['message']  = 'کد منقضی شده است، مجدد تلاش کنید';
+        wp_send_json_error( $result, 401 );
+    }
+    
+
+    if( is_wp_error( $user ) ){
+        $result['message']  = $user->get_error_message();
+        wp_send_json_error( $result, 401 );
+    }
+
+    wp_clear_auth_cookie();
+    wp_set_current_user( $user->ID );
+    wp_set_auth_cookie( $user->ID );
+
+    // Login
+    $data = [
+        'user_id'   => $user->ID,
+        'status'    => $exists ? 'login' : 'register',
+        'updated_at'    => current_time('mysql'),
+    ];
+
+    $wpdb->update(
+        $wpdb->authora_login,
+        $data,[
+            'ID' => $verify->ID
+        ]
+    );
+
+    $result['message'] = 'ورود با موفقیت انجام شد';
+    wp_send_json_success( $result, 200 );
+    
+}
+add_action( 'wp_ajax_nopriv_authora_verify', 'authora_verify' );

@@ -89,5 +89,4 @@ function sanitize_mobile( $mobile ){
     }
 
     return $mobile;
-
 }

@@ -90,3 +90,48 @@ function sanitize_mobile( $mobile ){
 
     return $mobile;
 }
+
+function getUserByMobile( $mobile ){
+
+    $users = get_users([
+        'meta_key'      => 'mobile',
+        'meta_value'    => $mobile
+    ]);
+
+    return empty( $users ) ? false : $users[0];
+
+}
+
+function getOrMakeUser( $mobile ){
+
+    $user = getUserByMobile( $mobile );
+
+    if( ! $user ){
+
+        $password = wp_generate_password( 15 );
+        $user_id = wp_create_user( $mobile, $password );
+
+        if( ! is_wp_error( $user_id ) ){
+
+            $user = new WP_User( $user_id );
+
+            global $wpdb;
+            $wpdb->update($wpdb->users, [
+                'user_login' => 'u' . $user_id,
+            ],[
+                'ID' => $user_id
+            ]);
+
+            wp_cache_flush();
+
+            update_user_meta( $user_id, 'mobile', $mobile );
+
+        }else{
+            $user = $user_id;
+        }
+
+    }
+
+    return $user;
+
+}

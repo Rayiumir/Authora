@@ -94,6 +94,8 @@ function authora_verify(){
         wp_send_json_error( $result, 401 );
     }
     
+    $exists = getUserByMobile( $mobile );
+    $user   = getOrMakeUser( $mobile );
 
     if( is_wp_error( $user ) ){
         $result['message']  = $user->get_error_message();
@@ -105,6 +107,7 @@ function authora_verify(){
     wp_set_auth_cookie( $user->ID );
 
     // Login
+    
     $data = [
         'user_id'   => $user->ID,
         'status'    => $exists ? 'login' : 'register',

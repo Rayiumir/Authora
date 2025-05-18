@@ -189,4 +189,35 @@ jQuery(document).ready(function ($) {
 
     });
 
+    function process_otp(otp) {
+
+        let code = otp.code;
+
+        let code_array = code.split('');
+        for (let i = 0; i < code_array.length; i++) {
+            $('.authora-codes input').eq(i).val(code_array[i]);
+        }
+
+        $('#authora-verify-code').val(code);
+
+        $('#authora-verify').submit();
+
+    }
+
+    if ('OTPCredential' in window) {
+
+        const ac = new AbortController();
+        $('#authora-verify').submit(function (e) {
+            ac.abort();
+        });
+
+        navigator.credentials.get({
+            otp: { transport: ['sms'] },
+            signal: ac.signal
+        }).then(process_otp);
+
+    }
+
+    $(document).on('click', "a[href*='wp-login.php']", open_modal);
+
 });

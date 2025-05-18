@@ -6,3 +6,37 @@
 </div>
 
 # Authora
+
+Authora is a lightweight and developer-friendly WordPress plugin that enables users to log in using just their mobile number — no passwords, no emails, no hassle.
+
+It provides a modern, secure, and user-friendly passwordless login experience for WordPress websites, using OTP (One-Time Password) verification via SMS.
+
+# Features:
+
+- Passwordless Login
+
+- Login with mobile number only
+
+- Automatic sending of verification code (OTP) via SMS
+
+- Automatic registration on first login (if no account)
+
+- Compatible with popular WordPress themes and plugins
+
+# Why Authora?
+
+In today’s world, users are tired of lengthy registration and login forms. Authora provides a fast and enjoyable experience, especially for WooCommerce stores, membership sites, and websites that want to make the login process simpler and more secure.
+
+# Installation
+
+- Upload the plugin to your WordPress `/wp-content/plugins/` directory.
+
+- Activate the plugin via the WordPress admin panel.
+
+- Configure your SMS gateway settings under Settings → Authora.
+
+- Use the `[authora-login]` shortcode wherever you want the login form to appear.
+
+```php
+<?php echo do_shortcode("[authora-login]"); ?>
+```

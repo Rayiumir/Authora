@@ -16,4 +16,4 @@ function authora_shortcode() {
     return $string; 
 
 }
-add_shortcode('authora_login', 'authora_shortcode');
+add_shortcode('authora-login', 'authora_shortcode');

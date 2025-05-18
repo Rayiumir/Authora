@@ -36,6 +36,26 @@ function authora_login() {
         wp_send_json_error( $result, 503 );
     }
 
+    $message = 'code: ' . $code;
+
+    $sent_sms = authora_smsir( $mobile, $code );
+    
+    if( is_wp_error( $sent_sms ) ){
+        $result['message'] = $sent_sms->get_error_message();
+        wp_send_json_error( $result, 400 );
+    }
+
+    $wpdb->update(
+        $wpdb->authora_login,
+        [
+            'price' => $sent_sms->cost,
+            'message_id' => $sent_sms->messageId,
+        ],
+        [
+            'ID' => $inserted,
+        ]
+    );
+
     $result['message']  = 'کد ' . $digit . ' رقمی ارسال شده به شماره ' . $mobile . ' را وارد کنید';
     $result['code']     = $code;
     $result['duration'] = $expire;
@@ -107,7 +127,7 @@ function authora_verify(){
     wp_set_auth_cookie( $user->ID );
 
     // Login
-    
+
     $data = [
         'user_id'   => $user->ID,
         'status'    => $exists ? 'login' : 'register',

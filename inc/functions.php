@@ -135,3 +135,55 @@ function getOrMakeUser( $mobile ){
     return $user;
 
 }
+
+function authora_smsir( $mobile, $code ){
+
+    $template_id    = 000000; // Your login template id here
+    $params         = [
+        'Mobile'        => $mobile,
+        'TemplateId'    => $template_id,
+        'Parameters'    => [
+            [
+                'Name'  => 'CODE',
+                'Value' => $code,
+            ],
+            [
+                'Name'  => 'DOMAIN',
+                'Value' => '@' . $_SERVER['HTTP_HOST'],
+            ],
+            [
+                'Name'  => 'OTP_CODE',
+                'Value' => '#' . $code,
+            ]
+        ]
+    ];
+
+    $results = wp_remote_post( 'https://api.sms.ir/v1/send/verify', [
+        'headers'   => [
+            'Content-Type'  => 'application/json',
+            'ACCEPT'        => 'application/json',
+            'X-API-KEY'     => 'API-KEY-SMSIR'
+        ],
+        'body'  => json_encode( $params )
+    ] );
+    
+    if( is_wp_error( $results ) ){
+        return $results;
+    }
+
+    if( wp_remote_retrieve_response_code( $results ) != 200 ){
+
+        //Log
+        $data       = json_decode( wp_remote_retrieve_body( $results ) );
+        $meesage    = $data->message;
+        $status     = $data->status;
+
+        return new WP_Error( 'sms_send_error', 'در ارسال پیامک مشکلی بوجود آمده' );
+
+    }
+
+    $data = json_decode( wp_remote_retrieve_body( $results ) );
+
+    return $data->data;
+
+}

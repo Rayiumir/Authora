@@ -67,37 +67,25 @@ form#authora-login {
     font-weight: bold;
 }
 
-.authora-cols {
-    display: grid;
-    grid-template-columns: auto 40px 0px;
-    margin-bottom: 20px;
-    align-items: center;
-}
-
-.authora-cols span {
-    direction: ltr;
-    font-weight: bold;
-    text-align: center;
-}
-
-.authora-cols input {
-    border-radius: 8px !important;
-    border: 1px solid #B4B4B4 !important;
+.authora-field input {
+    border-radius: 10px !important;
+    border: 1px solid #d2d2d2 !important;
     width: 100%;
     height: initial !important;
-    padding: 10px 10px !important;
+    padding: 5px 0 !important;
     background: #F6F6F6;
     box-sizing: border-box;
     direction: ltr;
+    margin-top: 15px;
 }
 
 
 .authora-modal form button {
     border: none;
-    background: #595FFF;
+    background: #0d6efd;
     width: 100%;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 10px;
     color: #FFF;
     font-weight: bold;
     display: flex;
@@ -128,9 +116,8 @@ form#authora-login {
 
 p.authora-message {
     text-align: right;
-    border: 1px solid #FF6363;
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 10px;
     color: #FF6363;
     background: lab(63.3 60.41 32.99 / .1);
     display: none;
@@ -145,9 +132,8 @@ p.authora-message.active {
 .authora-success {
     background: #ecffec;
     color: green;
-    border: 1px solid green;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 5px;
+    border-radius: 10px;
 }
 
 
@@ -163,13 +149,11 @@ p.authora-message.active {
     width: 42px;
     height: 42px;
     border-radius: 8px;
-    background: #F6F6F6;
-    border: 1px solid #FFF;
+    border: 1px solid #d2d2d2;
     text-align: center;
-    color: #595FFF;
+    color: #333;
     font-size: 36px;
     font-weight: bold;
-    font-family: IRANSANSfanum;
     direction: ltr;
 }
 
@@ -179,7 +163,7 @@ p.authora-message.active {
 }
 
 a.authora-resend, a.authora-resend:hover {
-    color: #595FFF;
+    color: #333;
     font-weight: 500;
     opacity: .4;
     text-decoration: none;
@@ -191,7 +175,7 @@ a.authora-resend.active{
 }
 
 span.authora-countdown {
-    color: #595FFF;
+    color: #333;
     font-weight: 500;
 }
 
@@ -207,9 +191,9 @@ form#authora-verify {
 }
 
 button.authora-btn.authora-btn-secondary {
-    border: 1px solid #595FFF;
+    border: 1px solid #d2d2d2;
     background: none;
-    color: #595FFF;
+    color: #333;
 }
 
 .authora-modal form#authora-verify {
@@ -230,3 +214,6 @@ button.authora-btn.authora-btn-secondary {
     }
 }
 
+.text-center {
+    text-align: center !important;
+}

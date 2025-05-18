@@ -15,10 +15,7 @@ $digits = 5;
             </p>
             <div class="authora-field">
                 <label for="authora-phone">شماره همراه خود را وارد کنید</label>
-                <div class="authora-cols">
-                    <input type="text" inputmode="tel" placeholder="0 9 - - - - - - - - -" name="mobile" required>
-                    <span>+98</span>
-                </div>
+                <input type="text" inputmode="tel" class="text-center" placeholder="0 9 - - - - - - - - -" name="mobile" required>
             </div>
             <p class="authora-message">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">

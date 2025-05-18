@@ -84,7 +84,7 @@ jQuery(document).ready(function ($) {
     $('#authora-edit-number').click(toggle_form);
 
     var countdown = 1000;
-    function coutndown_handle() {
+    function countdown_handle() {
 
         if (countdown == 0) {
             $('.authora-resend').addClass('active');
@@ -95,7 +95,7 @@ jQuery(document).ready(function ($) {
         set_time(countdown);
 
     }
-    setInterval(coutndown_handle, 1000);
+    setInterval(countdown_handle, 1000);
 
     function set_time(countdown) {
 

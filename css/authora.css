@@ -79,6 +79,18 @@ form#authora-login {
     margin-top: 15px;
 }
 
+a.buttonLogin{
+    border: none;
+    background: #0d6efd;
+    padding: 7px;
+    border-radius: 10px;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition: 0.3s;
+}
 
 .authora-modal form button {
     border: none;

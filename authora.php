@@ -27,6 +27,7 @@ define('AUTHORA_LOGIN_PUBLIC', AUTHORA_LOGIN_PATH . 'public/');
 define('AUTHORA_LOGIN_VIEW', AUTHORA_LOGIN_PATH . 'view/');
 define('AUTHORA_LOGIN_INC', AUTHORA_LOGIN_PATH . 'inc/');
 define('AUTHORA_LOGIN_ADMIN', AUTHORA_LOGIN_PATH . 'admin/');
+define('AUTHORA_LOGIN_DRIVER', AUTHORA_LOGIN_PATH . 'drivers/');
  
  
  
@@ -37,6 +38,14 @@ require(AUTHORA_LOGIN_INC . 'enqueue.php');
 require(AUTHORA_LOGIN_INC . 'ajax.php');
 require(AUTHORA_LOGIN_INC . 'activation.php');
 require(AUTHORA_LOGIN_INC . 'functions.php');
+require(AUTHORA_LOGIN_DRIVER . 'SMSIR/Smsir.php');
+require(AUTHORA_LOGIN_DRIVER . 'SmsDriverInterface.php');
+require(AUTHORA_LOGIN_DRIVER . 'SmsManager.php');
+
+if(is_admin())
+{
+    require(AUTHORA_LOGIN_ADMIN . 'manager.php');
+}
 
 // Activation and Deactivation Tables
 

@@ -38,7 +38,7 @@ function authora_login() {
 
     $message = 'code: ' . $code;
 
-    $sent_sms = authora_smsir( $mobile, $code );
+    $sent_sms = authoraDrivers( $mobile, $code );
     
     if( is_wp_error( $sent_sms ) ){
         $result['message'] = $sent_sms->get_error_message();

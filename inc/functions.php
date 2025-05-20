@@ -136,54 +136,22 @@ function getOrMakeUser( $mobile ){
 
 }
 
-function authora_smsir( $mobile, $code ){
+function authoraDrivers( $mobile, $code ){
 
-    $template_id    = 000000; // Your login template id here
-    $params         = [
-        'Mobile'        => $mobile,
-        'TemplateId'    => $template_id,
-        'Parameters'    => [
-            [
-                'Name'  => 'CODE',
-                'Value' => $code,
-            ],
-            [
-                'Name'  => 'DOMAIN',
-                'Value' => '@' . $_SERVER['HTTP_HOST'],
-            ],
-            [
-                'Name'  => 'OTP_CODE',
-                'Value' => '#' . $code,
-            ]
-        ]
-    ];
+    $selected_driver = get_option('authora_sms_driver', 'smsir');
 
-    $results = wp_remote_post( 'https://api.sms.ir/v1/send/verify', [
-        'headers'   => [
-            'Content-Type'  => 'application/json',
-            'ACCEPT'        => 'application/json',
-            'X-API-KEY'     => 'API-KEY-SMSIR'
-        ],
-        'body'  => json_encode( $params )
-    ] );
-    
-    if( is_wp_error( $results ) ){
-        return $results;
+    switch ($selected_driver) {
+        case 'smsir':
+        default:
+            $driver = new SmsIrDriver(
+                get_option('authora_smsir_api_key'),
+                get_option('authora_smsir_template_id')
+            );
+            break;
     }
 
-    if( wp_remote_retrieve_response_code( $results ) != 200 ){
-
-        //Log
-        $data       = json_decode( wp_remote_retrieve_body( $results ) );
-        $meesage    = $data->message;
-        $status     = $data->status;
-
-        return new WP_Error( 'sms_send_error', 'در ارسال پیامک مشکلی بوجود آمده' );
-
-    }
-
-    $data = json_decode( wp_remote_retrieve_body( $results ) );
-
-    return $data->data;
+    $manager = SmsManager::getInstance();
+    $manager->setDriver($driver);
+    return $manager->sendVerifyCode($mobile, $code);
 
 }

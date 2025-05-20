@@ -1,0 +1,14 @@
+<?php
+
+class SmsManager {
+    
+    protected $driver;
+
+    public function __construct(SmsDriverInterface $driver) {
+        $this->driver = $driver;
+    }
+
+    public function sendVerifyCode($mobile, $code) {
+        return $this->driver->sendVerifyCode($mobile, $code);
+    }
+}

@@ -56,7 +56,7 @@ function authora_sms_settings_page() {
                 <tr>
                     <th scope="row">اپراتور پیامک</th>
                     <td>
-                        <select name="authora_sms_driver">
+                        <select name="authora_sms_driver" id="sms-driver-select">
                             <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>>SMS.ir</option>
                             <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>>فراز اس‌ام‌اس</option>
                         </select>
@@ -64,25 +64,25 @@ function authora_sms_settings_page() {
                 </tr>
             </table>
 
-            <div class="smsir-settings" style="display: <?php echo $selected_driver === 'smsir' ? 'block' : 'none'; ?>">
+            <div id="smsir-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'smsir' ? 'block' : 'none'; ?>">
                 <h3>تنظیمات SMS.IR</h3>
                 <table class="form-table">
                     <tr>
-                        <th scope="row">API Key</th>
+                        <th scope="row">API کلید</th>
                         <td><input type="text" name="authora_smsir_api_key" value="<?php echo esc_attr($smsir_api_key); ?>" class="regular-text" /></td>
                     </tr>
                     <tr>
-                        <th scope="row">Template ID</th>
+                        <th scope="row">قالب ID</th>
                         <td><input type="number" name="authora_smsir_template_id" value="<?php echo esc_attr($smsir_template_id); ?>" class="regular-text" /></td>
                     </tr>
                 </table>
             </div>
 
-            <div class="farazsms-settings" style="display: <?php echo $selected_driver === 'farazsms' ? 'block' : 'none'; ?>">
+            <div id="farazsms-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'farazsms' ? 'block' : 'none'; ?>">
                 <h3>تنظیمات فراز اس‌ام‌اس</h3>
                 <table class="form-table">
                     <tr>
-                        <th scope="row">API Key</th>
+                        <th scope="row">API کلید</th>
                         <td>
                             <input type="text" name="authora_farazsms_api_key" value="<?php echo esc_attr(get_option('authora_farazsms_api_key')); ?>" class="regular-text">
                         </td>
@@ -104,5 +104,22 @@ function authora_sms_settings_page() {
             <?php submit_button('ذخیره تنظیمات'); ?>
         </form>
     </div>
+
+    <script>
+        jQuery(document).ready(function($) {
+            function toggleSmsSettings() {
+                var selectedDriver = $('#sms-driver-select').val();
+                $('.sms-settings').hide();
+                $('#' + selectedDriver + '-settings').show();
+            }
+
+            $('#sms-driver-select').on('change', function() {
+                toggleSmsSettings();
+            });
+
+            // Initial state
+            toggleSmsSettings();
+        });
+    </script>
     <?php
 }

@@ -45,8 +45,105 @@ function authora_sms_settings_page() {
         .wp-menu-image img {
             margin-top: -5px;
         }
+
+        /* Main container styles */
+        .authora-sms-settings {
+            max-width: 800px;
+            margin: 20px 0;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* Header styles */
+        .authora-sms-settings h1 {
+            color: #1d2327;
+            font-size: 24px;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f1;
+        }
+
+        /* Section headers */
+        .authora-sms-settings h3 {
+            color: #1d2327;
+            font-size: 18px;
+            margin: 20px 0 15px;
+            padding: 10px 15px;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-right: 4px solid #2271b1;
+        }
+
+        /* Form table styles */
+        .authora-sms-settings .form-table {
+            margin-top: 15px;
+        }
+
+        .authora-sms-settings .form-table th {
+            padding: 15px 10px 15px 0;
+            width: 200px;
+            color: #1d2327;
+        }
+
+        .authora-sms-settings .form-table td {
+            padding: 15px 10px;
+        }
+
+        /* Input styles */
+        .authora-sms-settings input[type="text"],
+        .authora-sms-settings input[type="number"],
+        .authora-sms-settings select {
+            width: 100%;
+            max-width: 400px;
+            padding: 8px 12px;
+            border: 1px solid #8c8f94;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .authora-sms-settings input[type="text"]:focus,
+        .authora-sms-settings input[type="number"]:focus,
+        .authora-sms-settings select:focus {
+            border-color: #2271b1;
+            box-shadow: 0 0 0 1px #2271b1;
+            outline: none;
+        }
+
+        /* Settings sections */
+        .sms-settings {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #dcdcde;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Submit button styles */
+        .authora-sms-settings .submit {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #f0f0f1;
+        }
+
+        .authora-sms-settings .button-primary {
+            background: #2271b1;
+            border-color: #2271b1;
+            color: #fff;
+            padding: 8px 20px;
+            height: auto;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .authora-sms-settings .button-primary:hover {
+            background: #135e96;
+            border-color: #135e96;
+        }
     </style>
-    <div class="wrap">
+    <div class="wrap authora-sms-settings">
         <h1>تنظیمات پیامک Authora</h1>
         <form method="post" action="options.php">
             <?php settings_fields('authora_sms_settings'); ?>

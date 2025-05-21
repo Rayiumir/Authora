@@ -79,17 +79,23 @@ form#authora-login {
     margin-top: 15px;
 }
 
-a.buttonLogin{
+.buttonLogin {
+    background-color: #4285f4;
+    color: white;
     border: none;
-    background: #0d6efd;
-    padding: 7px;
-    border-radius: 10px;
-    color: #FFF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    transition: 0.3s;
+    padding: 8px 15px;
+    border-radius: 13px;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.buttonLogin:hover {
+    background-color: #3367d6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .authora-modal form button {

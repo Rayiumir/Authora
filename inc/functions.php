@@ -141,6 +141,13 @@ function authoraDrivers( $mobile, $code ){
     $selected_driver = get_option('authora_sms_driver', 'smsir');
 
     switch ($selected_driver) {
+        case 'farazsms':
+            $driver = new FarazSMS(
+                get_option('authora_farazsms_api_key'),
+                get_option('authora_farazsms_pattern_code'),
+                get_option('authora_farazsms_sender_number')
+            );
+            break;
         case 'smsir':
         default:
             $driver = new SmsIrDriver(

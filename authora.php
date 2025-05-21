@@ -39,6 +39,7 @@ require(AUTHORA_LOGIN_INC . 'ajax.php');
 require(AUTHORA_LOGIN_INC . 'activation.php');
 require(AUTHORA_LOGIN_INC . 'functions.php');
 require(AUTHORA_LOGIN_DRIVER . 'SMSIR/Smsir.php');
+require(AUTHORA_LOGIN_DRIVER . 'FarazSMS/FarazSMS.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsDriverInterface.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsManager.php');
 

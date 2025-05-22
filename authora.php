@@ -1,20 +1,20 @@
 <?php
 /**
  * @package Authora
- * @version 1.2.0
+ * @version 1.3.0
  */
 /*
 Plugin Name: Authora
 Plugin URI: https://github.com/Rayiumir/Authora
 Description: Easy login with mobile number for WordPress.
 Author: Raymond Baghumian
-Version: 1.2.0
+Version: 1.3.0
 Author URI: https://rayium.ir
 */
 
 defined('ABSPATH') || exit;
 
-define('AUTHORA_LOGIN_VERSION', '1.2.0');
+define('AUTHORA_LOGIN_VERSION', '1.3.0');
 
 define( 'AUTHORA_LOGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'AUTHORA_LOGIN_PATH', plugin_dir_path(__FILE__) );
@@ -40,6 +40,7 @@ require(AUTHORA_LOGIN_INC . 'activation.php');
 require(AUTHORA_LOGIN_INC . 'functions.php');
 require(AUTHORA_LOGIN_DRIVER . 'SMSIR/Smsir.php');
 require(AUTHORA_LOGIN_DRIVER . 'FarazSMS/FarazSMS.php');
+require(AUTHORA_LOGIN_DRIVER . 'Shahvarpayam/ShahvarSMS.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsDriverInterface.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsManager.php');
 require_once AUTHORA_LOGIN_INC . 'login-forms.php';
@@ -56,3 +57,6 @@ $wpdb->authora_login = $wpdb->prefix . 'authora_login';
 
 register_activation_hook( __FILE__, 'authora_activation' );
 register_deactivation_hook( __FILE__, 'authora_activation' );
+
+// Include SMS drivers
+

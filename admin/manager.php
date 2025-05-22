@@ -14,6 +14,10 @@ function authora_register_sms_settings() {
     register_setting('authora_sms_settings', 'authora_farazsms_pattern_code');
     register_setting('authora_sms_settings', 'authora_farazsms_sender_number');
 
+    // Shahvar Payam
+    register_setting('authora_sms_settings', 'authora_shahvar_api_key');
+    register_setting('authora_sms_settings', 'authora_shahvar_sender_number');
+
     // Integration Settings (handled manually)
     // No need to register here as we handle saving manually
 
@@ -101,6 +105,10 @@ function authora_sms_settings_page() {
     $farazsms_pattern_code = get_option('authora_farazsms_pattern_code');
     $farazsms_sender_number = get_option('authora_farazsms_sender_number');
 
+    // Shahvar Payam
+    $shahvar_api_key = get_option('authora_shahvar_api_key');
+    $shahvar_sender_number = get_option('authora_shahvar_sender_number');
+
     // Get active tab from URL
     $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'general';
     ?>
@@ -134,6 +142,7 @@ function authora_sms_settings_page() {
                             <select name="authora_sms_driver" id="sms-driver-select">
                                 <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>>SMS.ir</option>
                                 <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>>فراز اس‌ام‌اس</option>
+                                <option value="shahvar" <?php selected($selected_driver, 'shahvar'); ?>>شاهوار پیام</option>
                             </select>
                         </td>
                     </tr>
@@ -172,6 +181,24 @@ function authora_sms_settings_page() {
                             <th scope="row">شماره فرستنده</th>
                             <td>
                                 <input type="text" name="authora_farazsms_sender_number" value="<?php echo esc_attr($farazsms_sender_number); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="shahvar-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'shahvar' ? 'block' : 'none'; ?>">
+                    <h3>تنظیمات شاهوار پیام</h3>
+                    <table class="form-table">
+                        <tr>
+                            <th scope="row">API کلید</th>
+                            <td>
+                                <input type="text" name="authora_shahvar_api_key" value="<?php echo esc_attr(get_option('authora_shahvar_api_key')); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">شماره فرستنده</th>
+                            <td>
+                                <input type="text" name="authora_shahvar_sender_number" value="<?php echo esc_attr(get_option('authora_shahvar_sender_number')); ?>" class="regular-text">
                             </td>
                         </tr>
                     </table>

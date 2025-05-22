@@ -3,9 +3,9 @@
 // Register settings
 
 function authora_register_sms_settings() {
+    // SMS Settings
+    // Sms.ir
     register_setting('authora_sms_settings', 'authora_sms_driver');
-
-    // SMS.IR
     register_setting('authora_sms_settings', 'authora_smsir_api_key');
     register_setting('authora_sms_settings', 'authora_smsir_template_id');
 
@@ -13,13 +13,74 @@ function authora_register_sms_settings() {
     register_setting('authora_sms_settings', 'authora_farazsms_api_key');
     register_setting('authora_sms_settings', 'authora_farazsms_pattern_code');
     register_setting('authora_sms_settings', 'authora_farazsms_sender_number');
+
+    // Integration Settings (handled manually)
+    // No need to register here as we handle saving manually
+
+    // Handle settings update redirect for SMS settings
+    if (isset($_POST['option_page']) && $_POST['option_page'] === 'authora_sms_settings') {
+        $active_tab = isset($_POST['active_tab']) ? sanitize_text_field($_POST['active_tab']) : 'general';
+        
+        // Only redirect if settings were actually saved
+        if (isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'authora_sms_settings-options')) {
+            $redirect_url = add_query_arg(
+                array(
+                    'page' => 'authora-sms-settings',
+                    'settings-updated' => 'true',
+                    'tab' => $active_tab
+                ),
+                admin_url('admin.php')
+            );
+            wp_redirect($redirect_url);
+            exit;
+        }
+    }
 }
 add_action('admin_init', 'authora_register_sms_settings');
 
+// Custom function to handle integration settings update
+function authora_handle_integration_settings_save() {
+    // Check if our integration form was submitted
+    if (isset($_POST['authora_integration_settings_submit']) && isset($_POST['_wpnonce'])) {
+        // Verify nonce
+        if (!wp_verify_nonce($_POST['_wpnonce'], 'authora_integration_settings_nonce')) {
+            // Nonce verification failed, handle error or just return
+            wp_die('Security check failed');
+        }
+
+        // Log received POST data
+        error_log('Authora: Integration settings form submitted.');
+        error_log('Authora: POST data: ' . print_r($_POST, true));
+
+        // Sanitize and update mobile login setting
+        $enable_mobile_login = isset($_POST['authora_enable_mobile_login']) ? '1' : '0';
+        update_option('authora_enable_mobile_login', $enable_mobile_login);
+        error_log('Authora: Saved authora_enable_mobile_login: ' . $enable_mobile_login);
+
+        // Sanitize and update WooCommerce mobile login setting
+        $enable_woo_mobile_login = isset($_POST['authora_enable_woo_mobile_login']) ? '1' : '0';
+        update_option('authora_enable_woo_mobile_login', $enable_woo_mobile_login);
+        error_log('Authora: Saved authora_enable_woo_mobile_login: ' . $enable_woo_mobile_login);
+
+        // Redirect back to the settings page, staying on the integration tab
+        $redirect_url = add_query_arg(
+            array(
+                'page' => 'authora-sms-settings',
+                'settings-updated' => 'true',
+                'tab' => 'integration'
+            ),
+            admin_url('admin.php')
+        );
+        wp_redirect($redirect_url);
+        exit;
+    }
+}
+add_action('admin_init', 'authora_handle_integration_settings_save');
+
 function authora_sms_settings_menu() {
     add_menu_page(
-        'تنظیمات پیامک',
-        'تنظیمات پیامک',
+        'تنظیمات آتورا',
+        'تنظیمات آتورا',
         'manage_options',
         'authora-sms-settings',
         'authora_sms_settings_page',
@@ -40,183 +101,119 @@ function authora_sms_settings_page() {
     $farazsms_pattern_code = get_option('authora_farazsms_pattern_code');
     $farazsms_sender_number = get_option('authora_farazsms_sender_number');
 
+    // Get active tab from URL
+    $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'general';
     ?>
-    <style>
-        .wp-menu-image img {
-            margin-top: -5px;
-        }
-
-        /* Main container styles */
-        .authora-sms-settings {
-            max-width: 800px;
-            margin: 20px 0;
-            background: #fff;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        /* Header styles */
-        .authora-sms-settings h1 {
-            color: #1d2327;
-            font-size: 24px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f1;
-        }
-
-        /* Section headers */
-        .authora-sms-settings h3 {
-            color: #1d2327;
-            font-size: 18px;
-            margin: 20px 0 15px;
-            padding: 10px 15px;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border-right: 4px solid #2271b1;
-        }
-
-        /* Form table styles */
-        .authora-sms-settings .form-table {
-            margin-top: 15px;
-        }
-
-        .authora-sms-settings .form-table th {
-            padding: 15px 10px 15px 0;
-            width: 200px;
-            color: #1d2327;
-        }
-
-        .authora-sms-settings .form-table td {
-            padding: 15px 10px;
-        }
-
-        /* Input styles */
-        .authora-sms-settings input[type="text"],
-        .authora-sms-settings input[type="number"],
-        .authora-sms-settings select {
-            width: 100%;
-            max-width: 400px;
-            padding: 8px 12px;
-            border: 1px solid #8c8f94;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-        }
-
-        .authora-sms-settings input[type="text"]:focus,
-        .authora-sms-settings input[type="number"]:focus,
-        .authora-sms-settings select:focus {
-            border-color: #2271b1;
-            box-shadow: 0 0 0 1px #2271b1;
-            outline: none;
-        }
-
-        /* Settings sections */
-        .sms-settings {
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            border: 1px solid #dcdcde;
-            margin-top: 20px;
-            transition: all 0.3s ease;
-        }
-
-        /* Submit button styles */
-        .authora-sms-settings .submit {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #f0f0f1;
-        }
-
-        .authora-sms-settings .button-primary {
-            background: #2271b1;
-            border-color: #2271b1;
-            color: #fff;
-            padding: 8px 20px;
-            height: auto;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-
-        .authora-sms-settings .button-primary:hover {
-            background: #135e96;
-            border-color: #135e96;
-        }
-    </style>
     <div class="wrap authora-sms-settings">
-        <h1>تنظیمات پیامک Authora</h1>
-        <form method="post" action="options.php">
-            <?php settings_fields('authora_sms_settings'); ?>
-            <?php do_settings_sections('authora_sms_settings'); ?>
+        <h1>تنظیمات پیامک آتورا (Authora)</h1>
 
-            <table class="form-table">
-                <tr>
-                    <th scope="row">اپراتور پیامک</th>
-                    <td>
-                        <select name="authora_sms_driver" id="sms-driver-select">
-                            <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>>SMS.ir</option>
-                            <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>>فراز اس‌ام‌اس</option>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-
-            <div id="smsir-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'smsir' ? 'block' : 'none'; ?>">
-                <h3>تنظیمات SMS.IR</h3>
-                <table class="form-table">
-                    <tr>
-                        <th scope="row">API کلید</th>
-                        <td><input type="text" name="authora_smsir_api_key" value="<?php echo esc_attr($smsir_api_key); ?>" class="regular-text" /></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">قالب ID</th>
-                        <td><input type="number" name="authora_smsir_template_id" value="<?php echo esc_attr($smsir_template_id); ?>" class="regular-text" /></td>
-                    </tr>
-                </table>
+        <?php if (isset($_GET['settings-updated'])) : ?>
+            <div class="authora-notice authora-notice-success">
+                تنظیمات با موفقیت ذخیره شد.
             </div>
+        <?php endif; ?>
 
-            <div id="farazsms-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'farazsms' ? 'block' : 'none'; ?>">
-                <h3>تنظیمات فراز اس‌ام‌اس</h3>
+        <div class="authora-tabs">
+            <a href="#general" class="nav-tab <?php echo $active_tab === 'general' ? 'nav-tab-active' : ''; ?>">تنظیمات اپراتور</a>
+            <a href="#integration" class="nav-tab <?php echo $active_tab === 'integration' ? 'nav-tab-active' : ''; ?>">یکپارچه‌سازی</a>
+        </div>
+
+        <div id="general" class="authora-tab-content <?php echo $active_tab === 'general' ? 'active' : ''; ?>">
+            <form method="post" action="options.php" id="general-form">
+                <?php 
+                settings_fields('authora_sms_settings');
+                do_settings_sections('authora_sms_settings');
+                ?>
+                <input type="hidden" name="option_page" value="authora_sms_settings">
+                <input type="hidden" name="active_tab" value="general">
+                
                 <table class="form-table">
                     <tr>
-                        <th scope="row">API کلید</th>
+                        <th scope="row">اپراتور پیامک</th>
                         <td>
-                            <input type="text" name="authora_farazsms_api_key" value="<?php echo esc_attr(get_option('authora_farazsms_api_key')); ?>" class="regular-text">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">کد الگو</th>
-                        <td>
-                            <input type="text" name="authora_farazsms_pattern_code" value="<?php echo esc_attr(get_option('authora_farazsms_pattern_code')); ?>" class="regular-text">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">شماره فرستنده</th>
-                        <td>
-                            <input type="text" name="authora_farazsms_sender_number" value="<?php echo esc_attr(get_option('authora_farazsms_sender_number')); ?>" class="regular-text">
+                            <select name="authora_sms_driver" id="sms-driver-select">
+                                <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>>SMS.ir</option>
+                                <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>>فراز اس‌ام‌اس</option>
+                            </select>
                         </td>
                     </tr>
                 </table>
-            </div>
-            <?php submit_button('ذخیره تنظیمات'); ?>
-        </form>
+
+                <div id="smsir-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'smsir' ? 'block' : 'none'; ?>">
+                    <h3>تنظیمات SMS.IR</h3>
+                    <table class="form-table">
+                        <tr>
+                            <th scope="row">API کلید</th>
+                            <td><input type="text" name="authora_smsir_api_key" value="<?php echo esc_attr($smsir_api_key); ?>" class="regular-text" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">قالب ID</th>
+                            <td><input type="number" name="authora_smsir_template_id" value="<?php echo esc_attr($smsir_template_id); ?>" class="regular-text" /></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="farazsms-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'farazsms' ? 'block' : 'none'; ?>">
+                    <h3>تنظیمات فراز اس‌ام‌اس</h3>
+                    <table class="form-table">
+                        <tr>
+                            <th scope="row">API کلید</th>
+                            <td>
+                                <input type="text" name="authora_farazsms_api_key" value="<?php echo esc_attr($farazsms_api_key); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">کد الگو</th>
+                            <td>
+                                <input type="text" name="authora_farazsms_pattern_code" value="<?php echo esc_attr($farazsms_pattern_code); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">شماره فرستنده</th>
+                            <td>
+                                <input type="text" name="authora_farazsms_sender_number" value="<?php echo esc_attr($farazsms_sender_number); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <?php submit_button('ذخیره تنظیمات'); ?>
+            </form>
+        </div>
+
+        <div id="integration" class="authora-tab-content <?php echo $active_tab === 'integration' ? 'active' : ''; ?>">
+            <h3>یکپارچه‌سازی با وردپرس و ووکامرس</h3>
+            <form method="post" action="" id="integration-form">
+                <?php wp_nonce_field('authora_integration_settings_nonce'); ?>
+                <input type="hidden" name="active_tab" value="integration">
+                
+                <table class="form-table">
+                    <tr>
+                        <th scope="row">ورود با شماره موبایل در فرم وردپرس</th>
+                        <td width="500px">
+                            <label class="toggle-label">
+                                <span class="toggle-switch">
+                                    <input type="checkbox" name="authora_enable_mobile_login" value="1" <?php echo get_option('authora_enable_mobile_login') === '1' ? 'checked' : ''; ?>>
+                                    <span class="toggle-slider"></span>
+                                </span>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">ورود با شماره موبایل در فرم ووکامرس</th>
+                        <td width="500px">
+                            <label class="toggle-label">
+                                <span class="toggle-switch">
+                                    <input type="checkbox" name="authora_enable_woo_mobile_login" value="1" <?php echo get_option('authora_enable_woo_mobile_login') === '1' ? 'checked' : ''; ?>>
+                                    <span class="toggle-slider"></span>
+                                </span>
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+                <?php submit_button('ذخیره تنظیمات', 'primary', 'authora_integration_settings_submit'); ?>
+            </form>
+        </div>
     </div>
-
-    <script>
-        jQuery(document).ready(function($) {
-            function toggleSmsSettings() {
-                var selectedDriver = $('#sms-driver-select').val();
-                $('.sms-settings').hide();
-                $('#' + selectedDriver + '-settings').show();
-            }
-
-            $('#sms-driver-select').on('change', function() {
-                toggleSmsSettings();
-            });
-
-            // Initial state
-            toggleSmsSettings();
-        });
-    </script>
+    
     <?php
 }

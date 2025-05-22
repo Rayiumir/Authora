@@ -30,3 +30,23 @@ function authora_public_scripts(){
 
 }
 add_action( 'wp_enqueue_scripts', 'authora_public_scripts' );
+
+function admin_scripts(){
+
+    wp_enqueue_style(
+        'setting-style',
+        AUTHORA_LOGIN_CSS . 'setting.css',
+        [],
+        defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION
+    );
+
+    wp_enqueue_script(
+        'setting-script',
+        AUTHORA_LOGIN_JS . 'setting.js',
+        ['jquery'],
+        defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION,
+        true
+    );
+
+}
+add_action( 'admin_head', 'admin_scripts' );

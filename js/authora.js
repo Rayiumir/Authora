@@ -29,7 +29,7 @@ jQuery(document).ready(function ($) {
                 $(_this).addClass('loading');
                 $(_message).removeClass('active');
                 $(_btn).attr('disabled', true);
-                $(_resend).text('در حال ارسال...').removeClass('active');
+                $(_resend).text(authora.i18n.sending).removeClass('active');
             },
             success: function (result) {
                 console.log(result);
@@ -45,12 +45,12 @@ jQuery(document).ready(function ($) {
 
                 } else {
                     let result = xhr.responseJSON;
-                    let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+                    let message = authora.i18n.error_occurred;
 
                     if (result && result.data && result.data.message) {
                         message = result.data.message;
                     } else if (xhr.status === 0) {
-                        message = 'ارتباط با سرور برقرار نشد.';
+                        message = authora.i18n.connection_error;
                     }
 
                     $(_message).addClass('active').find('span').text(message);
@@ -59,16 +59,16 @@ jQuery(document).ready(function ($) {
             complete: function () {
                 $(_this).removeClass('loading');
                 $(_btn).attr('disabled', false);
-                $(_resend).text('ارسال مجدد');
+                $(_resend).text(authora.i18n.resend);
             },
             error: function (xhr) {
                 let result = xhr.responseJSON;
-                let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+                let message = authora.i18n.error_occurred;
 
                 if (result && result.data && result.data.message) {
                     message = result.data.message;
                 } else if (xhr.status === 0) {
-                    message = 'ارتباط با سرور برقرار نشد.';
+                    message = authora.i18n.connection_error;
                 }
 
                 $(_message).addClass('active').find('span').text(message);
@@ -175,12 +175,12 @@ jQuery(document).ready(function ($) {
             },
             error: function (xhr) {
                 let result = xhr.responseJSON;
-                let message = 'خطایی رخ داده است. لطفاً دوباره تلاش کنید.';
+                let message = authora.i18n.error_occurred;
 
                 if (result && result.data && result.data.message) {
                     message = result.data.message;
                 } else if (xhr.status === 0) {
-                    message = 'ارتباط با سرور برقرار نشد.';
+                    message = authora.i18n.connection_error;
                 }
 
                 $(_message).addClass('active').find('span').text(message);

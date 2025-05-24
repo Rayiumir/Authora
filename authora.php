@@ -4,12 +4,14 @@
  * @version 1.3.0
  */
 /*
-Plugin Name: Authora
-Plugin URI: https://github.com/Rayiumir/Authora
-Description: Easy login with mobile number for WordPress.
-Author: Raymond Baghumian
-Version: 1.3.0
-Author URI: https://rayium.ir
+* Plugin Name: <?php _e('آتورا', 'authora'); ?>
+* Plugin URI: https://github.com/Rayiumir/Authora
+* Description: <?php _e('ورود آسان با شماره موبایل در وردپرس', 'authora'); ?>
+* Author: <?php _e('رایموند باغومیان', 'authora'); ?>
+* Version: 1.3.0
+* Author URI: https://rayium.ir
+* Text Domain: authora
+* Domain Path: /languages
 */
 
 defined('ABSPATH') || exit;
@@ -40,7 +42,7 @@ require(AUTHORA_LOGIN_INC . 'activation.php');
 require(AUTHORA_LOGIN_INC . 'functions.php');
 require(AUTHORA_LOGIN_DRIVER . 'SMSIR/Smsir.php');
 require(AUTHORA_LOGIN_DRIVER . 'FarazSMS/FarazSMS.php');
-require(AUTHORA_LOGIN_DRIVER . 'Shahvarpayam/ShahvarSMS.php');
+require(AUTHORA_LOGIN_DRIVER . 'ShahvarSMS/ShahvarSMS.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsDriverInterface.php');
 require(AUTHORA_LOGIN_DRIVER . 'SmsManager.php');
 require_once AUTHORA_LOGIN_INC . 'login-forms.php';
@@ -58,5 +60,14 @@ $wpdb->authora_login = $wpdb->prefix . 'authora_login';
 register_activation_hook( __FILE__, 'authora_activation' );
 register_deactivation_hook( __FILE__, 'authora_activation' );
 
-// Include SMS drivers
+// Languages Plugin
+
+function authora_textdomain() {
+    load_plugin_textdomain( 
+        'authora', 
+        false, 
+        dirname( plugin_basename( __FILE__ ) ) . '/languages' 
+    );
+}
+add_action( 'plugins_loaded', 'authora_textdomain' );
 

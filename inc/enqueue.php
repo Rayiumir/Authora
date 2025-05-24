@@ -23,9 +23,25 @@ function authora_public_scripts(){
         true
     );
 
+    if (is_rtl()) {
+        wp_enqueue_style(
+            'authora-rtl', 
+            AUTHORA_LOGIN_CSS . 'modal-rtl.css', 
+            [],
+            defined('WP_DEBUG') && WP_DEBUG ? time() : AUTHORA_LOGIN_VERSION,
+        );
+    }
+
     wp_localize_script( 'authora-script', 'authora', [
         'ajax_url' => admin_url('admin-ajax.php'),
-        'nonce' => wp_create_nonce('authora_login')
+        'nonce' => wp_create_nonce('authora_login'),
+
+        'i18n' => array(
+            'sending' => __('Sending...', 'authora'),
+            'resend' => __('Resend', 'authora'),
+            'error_occurred' => __('An error occurred. Please try again.', 'authora'),
+            'connection_error' => __('Could not connect to server.', 'authora')
+        )
     ]);
 
 }

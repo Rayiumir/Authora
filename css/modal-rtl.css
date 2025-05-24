@@ -1,0 +1,62 @@
+/* RTL Support for Authora Plugin */
+
+.modal-window {
+    direction: rtl;
+    text-align: right;
+}
+
+.modal-window input[type="text"],
+.modal-window input[type="tel"],
+.modal-window input[type="number"] {
+    text-align: right;
+}
+
+
+.modal-window .authora-message {
+    text-align: right;
+}
+
+
+.modal-window .modal-close {
+    left: 10px;
+    right: auto;
+}
+
+
+.modal-window .authora-message svg {
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+
+.modal-window label {
+    text-align: right;
+    display: block;
+}
+
+
+.modal-window .authora-field {
+    text-align: right;
+}
+
+
+.modal-window .authora-codes {
+    direction: ltr;
+    text-align: center;
+}
+
+
+.modal-window .authora-no-receive {
+    text-align: right;
+}
+
+
+.modal-window .authora-buttons {
+    text-align: right;
+}
+
+
+.modal-window .authora-success {
+    text-align: right;
+}
+

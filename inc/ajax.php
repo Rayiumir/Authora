@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 function authora_login() {
     global $wpdb;
     $result = [
-        'message'   => 'خطایی رخ داده است'
+        'message'   => __('An error occurred', 'authora')
     ];
 
     if(
@@ -19,7 +19,7 @@ function authora_login() {
     $mobile = sanitize_mobile( $_REQUEST['mobile'] );
 
     if( ! $mobile ){
-        $result['message']  = 'موبایل صحیح نیست';
+        $result['message']  = __('Invalid mobile number', 'authora');
         wp_send_json_error( $result, 401 );
     }
 
@@ -56,7 +56,7 @@ function authora_login() {
         ]
     );
 
-    $result['message']  = 'کد ' . $digit . ' رقمی ارسال شده به شماره ' . $mobile . ' را وارد کنید';
+    $result['message']  = sprintf(__('Enter the %d-digit code sent to %s', 'authora'), $digit, $mobile);
     $result['code']     = $code;
     $result['duration'] = $expire;
     $result['mobile']    = $mobile;
@@ -70,7 +70,7 @@ add_action('wp_ajax_nopriv_authora_login', 'authora_login');
 function authora_verify(){
     
     $result = [
-        'message'   => 'خطایی رخ داده است'
+        'message'   => __('An error occurred', 'authora')
     ];
 
     if(
@@ -85,7 +85,7 @@ function authora_verify(){
     $mobile  = sanitize_mobile( $_REQUEST['mobile'] );
 
     if( !$mobile ){
-        $result['message']  = 'تلفن صحیح نیست';
+        $result['message']  = __('Invalid phone number', 'authora');
         wp_send_json_error( $result, 401 );
     }
 
@@ -100,17 +100,17 @@ function authora_verify(){
     );
 
     if( !$verify ){
-        $result['message']  = 'درخواست احراز شما یافت نشد';
+        $result['message']  = __('Your verification request was not found', 'authora');
         wp_send_json_error( $result, 401 );
     }
 
     if( $verify->code != $code ){
-        $result['message']  = 'کد ارسال اشتباه است، مجدد تلاش کنید';
+        $result['message']  = __('Incorrect verification code, please try again', 'authora');
         wp_send_json_error( $result, 401 );
     }
 
     if( current_time('timestamp') >= strtotime( $verify->expired_at ) ){
-        $result['message']  = 'کد منقضی شده است، مجدد تلاش کنید';
+        $result['message']  = __('Code has expired, please try again', 'authora');
         wp_send_json_error( $result, 401 );
     }
     
@@ -141,7 +141,7 @@ function authora_verify(){
         ]
     );
 
-    $result['message'] = 'ورود با موفقیت انجام شد';
+    $result['message'] = __('Login successful', 'authora');
     wp_send_json_success( $result, 200 );
     
 }

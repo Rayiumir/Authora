@@ -236,3 +236,49 @@ button.authora-btn.authora-btn-secondary {
     text-align: center !important;
 }
 
+/* RTL Support for English Language */
+html[lang="en-US"] .authora-modal,
+html[lang="en-US"] .authora-container,
+html[lang="en-US"] .authora-field,
+html[lang="en-US"] .authora-buttons,
+html[lang="en-US"] .authora-no-receive,
+html[lang="en-US"] .authora-codes {
+    direction: ltr;
+    text-align: left;
+}
+
+html[lang="en-US"] .authora-modal h2,
+html[lang="en-US"] .authora-modal p,
+html[lang="en-US"] .authora-field label,
+html[lang="en-US"] .authora-no-receive p {
+    text-align: left;
+}
+
+html[lang="en-US"] .authora-codes input {
+    margin: 0 0 0 5px;
+}
+
+html[lang="en-US"] .authora-codes input:first-child {
+    margin-left: 0;
+}
+
+html[lang="en-US"] .authora-buttons {
+    flex-direction: row;
+}
+
+html[lang="en-US"] .authora-buttons button {
+    margin: 0 0 0 10px;
+}
+
+html[lang="en-US"] .authora-buttons button:first-child {
+    margin-left: 0;
+}
+
+html[lang="en-US"] .authora-no-receive div {
+    flex-direction: row;
+}
+
+html[lang="en-US"] .authora-no-receive a {
+    margin: 0 0 0 10px;
+}
+

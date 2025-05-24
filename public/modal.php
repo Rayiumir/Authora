@@ -11,9 +11,10 @@ function authora_login_modal(): void
 add_action('wp_footer', 'authora_login_modal');
 
 function authora_shortcode() { 
-
-    $string = '<a class="buttonLogin" href="#modal">ورود / عضویت</a>';
-    return $string; 
-
+    if (!is_user_logged_in()) {
+        $string = '<a class="buttonLogin" href="#modal">' . __('ورود / عضویت', 'authora') . '</a>';
+        return $string;
+    }
+    return '';
 }
 add_shortcode('authora-login', 'authora_shortcode');

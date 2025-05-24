@@ -4,14 +4,16 @@
  * @version 1.3.0
  */
 /*
-* Plugin Name: <?php _e('آتورا', 'authora'); ?>
-* Plugin URI: https://github.com/Rayiumir/Authora
-* Description: <?php _e('ورود آسان با شماره موبایل در وردپرس', 'authora'); ?>
-* Author: <?php _e('رایموند باغومیان', 'authora'); ?>
-* Version: 1.3.0
-* Author URI: https://rayium.ir
-* Text Domain: authora
-* Domain Path: /languages
+Plugin Name: Authora : Easy login with mobile number
+Plugin URI: https://github.com/Rayiumir/Authora
+Description: Easy login with mobile number for WordPress.
+Author: Raymond Baghumian
+Version: 1.3.0
+Author URI: https://rayium.ir
+Text Domain: authora
+Domain Path: /languages
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 defined('ABSPATH') || exit;

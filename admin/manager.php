@@ -5,18 +5,18 @@
 function authora_register_sms_settings() {
     // SMS Settings
     // Sms.ir
-    register_setting('authora_sms_settings', 'authora_sms_driver');
-    register_setting('authora_sms_settings', 'authora_smsir_api_key');
-    register_setting('authora_sms_settings', 'authora_smsir_template_id');
+    register_setting('authora_sms_settings', 'authora_sms_driver', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_smsir_api_key', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_smsir_template_id', 'intval');
 
     // Farazsms
-    register_setting('authora_sms_settings', 'authora_farazsms_api_key');
-    register_setting('authora_sms_settings', 'authora_farazsms_pattern_code');
-    register_setting('authora_sms_settings', 'authora_farazsms_sender_number');
+    register_setting('authora_sms_settings', 'authora_farazsms_api_key', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_farazsms_pattern_code', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_farazsms_sender_number', 'sanitize_text_field');
 
     // Shahvar Payam
-    register_setting('authora_sms_settings', 'authora_shahvar_api_key');
-    register_setting('authora_sms_settings', 'authora_shahvar_sender_number');
+    register_setting('authora_sms_settings', 'authora_shahvar_api_key', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_shahvar_sender_number', 'sanitize_text_field');
 
     // Integration Settings (handled manually)
     // No need to register here as we handle saving manually

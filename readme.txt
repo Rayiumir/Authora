@@ -1,12 +1,12 @@
-=== Authora : Easy login with mobile number for WordPress ===
+=== Authora : Easy login with mobile number ===
 Contributors: authora
 Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login with phone number, SMS verification, WooCommerce login, SMS gateway, Twilio, sms.ir, 
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: trunk
+Stable tag: 1.3.0
 License: GPL v2.0 or later
-License URI: http://www.opensource.org/licenses/gpl-license.php
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 # Authora
 
@@ -28,7 +28,7 @@ It provides a modern, secure, and user-friendly passwordless login experience fo
 
 # Why Authora?
 
-In today’s world, users are tired of lengthy registration and login forms. Authora provides a fast and enjoyable experience, especially for WooCommerce stores, membership sites, and websites that want to make the login process simpler and more secure.
+In today's world, users are tired of lengthy registration and login forms. Authora provides a fast and enjoyable experience, especially for WooCommerce stores, membership sites, and websites that want to make the login process simpler and more secure.
 
 # Installation
 
@@ -60,7 +60,7 @@ Currently, Authora supports SMS.ir, Faraz SMS, and ShahvarPayam as SMS providers
 
 ### Can I customize the SMS message content? ###
 
-Yes, you can customize the SMS message and template from the plugin settings and your SMS provider’s panel.
+Yes, you can customize the SMS message and template from the plugin settings and your SMS provider's panel.
 
 ### Is Authora free to use? ###
 
@@ -74,17 +74,17 @@ No, Authora works independently and does not require any additional plugins. You
 
 Yes, the plugin is fully multilingual and supports both English and Persian.
 
-### What should users do if they don’t receive the SMS code? ###
+### What should users do if they don't receive the SMS code? ###
 
-If a user does not receive the SMS, they can use the “Resend” option. Also, make sure the SMS provider settings are entered correctly.
+If a user does not receive the SMS, they can use the "Resend" option. Also, make sure the SMS provider settings are entered correctly.
 
 ### Can I change the appearance of the login form? ###
 
-Yes, you can customize the appearance by editing the plugin’s CSS files or adding your own custom CSS.
+Yes, you can customize the appearance by editing the plugin's CSS files or adding your own custom CSS.
 
 ### How can I get support? ###
 
-For support, you can visit the plugin’s GitHub page:
+For support, you can visit the plugin's GitHub page:
 
 [https://github.com/Rayiumir/Authora]
 

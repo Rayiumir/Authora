@@ -40,3 +40,28 @@ In today’s world, users are tired of lengthy registration and login forms. Aut
 ```php
 <?php echo do_shortcode("[authora-login]"); ?>
 ```
+
+# Screenshots
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" width="1000px">OTP Authora</th>
+      <th scope="col" width="1000px">Verify OTP Authora</th>
+      <th scope="col" width="1000px">Admin Authora</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <img src="./screenshots/OTP.png" width="100%" alt="OTP Authora">
+      </td>
+      <td>
+        <img src="./screenshots/Verify.png" width="100%" alt="Verify OTP">
+      </td>
+      <td>
+        <img src="./screenshots/Admin.png" width="100%" alt="Admin Authora">
+      </td>
+    </tr>
+  </tbody>
+</table>

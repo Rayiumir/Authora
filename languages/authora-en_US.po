@@ -158,3 +158,11 @@ msgstr "Verify Code"
 #: view/loginModal.php:70
 msgid "اصلاح شماره"
 msgstr "Edit Number"
+
+#: inc/activation.php:31
+msgid "شماره موبایل"
+msgstr "Mobile Number"
+
+#: inc/activation.php:36
+msgid "اطلاعات تماس"
+msgstr "Contact Information"

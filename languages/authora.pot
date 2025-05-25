@@ -121,4 +121,12 @@ msgid "ورود انجام شد"
 msgid "تأیید کد"
 
 #: view/loginModal.php:70
-msgid "اصلاح شماره" 
+msgid "اصلاح شماره"
+
+#: inc/activation.php:31
+msgid "شماره موبایل"
+msgstr ""
+
+#: inc/activation.php:36
+msgid "اطلاعات تماس"
+msgstr "" 

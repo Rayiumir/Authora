@@ -1,7 +1,7 @@
 <?php
 /**
  * @package Authora
- * @version 1.3.0
+ * @version 1.4.1
  */
 /*
 Plugin Name: Authora : Easy login with mobile number
@@ -18,7 +18,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 defined('ABSPATH') || exit;
 
-define('AUTHORA_LOGIN_VERSION', '1.3.0');
+define('AUTHORA_LOGIN_VERSION', '1.4.1');
 
 define( 'AUTHORA_LOGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'AUTHORA_LOGIN_PATH', plugin_dir_path(__FILE__) );

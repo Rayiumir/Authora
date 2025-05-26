@@ -18,15 +18,46 @@ function authora_register_sms_settings() {
     register_setting('authora_sms_settings', 'authora_shahvar_api_key', 'sanitize_text_field');
     register_setting('authora_sms_settings', 'authora_shahvar_sender_number', 'sanitize_text_field');
 
-    // Integration Settings (handled manually)
-    // No need to register here as we handle saving manually
-
     // Handle settings update redirect for SMS settings
+
     if (isset($_POST['option_page']) && $_POST['option_page'] === 'authora_sms_settings') {
         $active_tab = isset($_POST['active_tab']) ? sanitize_text_field($_POST['active_tab']) : 'general';
         
         // Only redirect if settings were actually saved
         if (isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'authora_sms_settings-options')) {
+            // Save the selected driver
+            if (isset($_POST['authora_sms_driver'])) {
+                update_option('authora_sms_driver', sanitize_text_field($_POST['authora_sms_driver']));
+            }
+
+            // Save settings
+            // SMS.IR
+            if (isset($_POST['authora_smsir_api_key'])) {
+                update_option('authora_smsir_api_key', sanitize_text_field($_POST['authora_smsir_api_key']));
+            }
+            if (isset($_POST['authora_smsir_template_id'])) {
+                update_option('authora_smsir_template_id', intval($_POST['authora_smsir_template_id']));
+            }
+
+            // Farazsms
+            if (isset($_POST['authora_farazsms_api_key'])) {
+                update_option('authora_farazsms_api_key', sanitize_text_field($_POST['authora_farazsms_api_key']));
+            }
+            if (isset($_POST['authora_farazsms_pattern_code'])) {
+                update_option('authora_farazsms_pattern_code', sanitize_text_field($_POST['authora_farazsms_pattern_code']));
+            }
+            if (isset($_POST['authora_farazsms_sender_number'])) {
+                update_option('authora_farazsms_sender_number', sanitize_text_field($_POST['authora_farazsms_sender_number']));
+            }
+
+            // Shahvar Payam
+            if (isset($_POST['authora_shahvar_api_key'])) {
+                update_option('authora_shahvar_api_key', sanitize_text_field($_POST['authora_shahvar_api_key']));
+            }
+            if (isset($_POST['authora_shahvar_sender_number'])) {
+                update_option('authora_shahvar_sender_number', sanitize_text_field($_POST['authora_shahvar_sender_number']));
+            }
+
             $redirect_url = add_query_arg(
                 array(
                     'page' => 'authora-sms-settings',
@@ -35,7 +66,9 @@ function authora_register_sms_settings() {
                 ),
                 admin_url('admin.php')
             );
+
             wp_redirect($redirect_url);
+
             exit;
         }
     }
@@ -75,12 +108,15 @@ function authora_handle_integration_settings_save() {
             ),
             admin_url('admin.php')
         );
+
         wp_redirect($redirect_url);
+
         exit;
     }
 }
 add_action('admin_init', 'authora_handle_integration_settings_save');
 
+// SMS Settings Menu
 function authora_sms_settings_menu() {
     add_menu_page(
         __('تنظیمات آتورا', 'authora'),
@@ -94,6 +130,7 @@ function authora_sms_settings_menu() {
 }
 add_action('admin_menu', 'authora_sms_settings_menu');
 
+// SMS Settings Page
 function authora_sms_settings_page() {
     $selected_driver = get_option('authora_sms_driver', 'smsir');
     // SMS.IR
@@ -127,7 +164,7 @@ function authora_sms_settings_page() {
         </div>
 
         <div id="general" class="authora-tab-content <?php echo $active_tab === 'general' ? 'active' : ''; ?>">
-            <form method="post" action="options.php" id="general-form">
+            <form method="post" action="options.php">
                 <?php 
                 settings_fields('authora_sms_settings');
                 do_settings_sections('authora_sms_settings');
@@ -192,13 +229,13 @@ function authora_sms_settings_page() {
                         <tr>
                             <th scope="row"><?php _e('API کلید', 'authora'); ?></th>
                             <td>
-                                <input type="text" name="authora_shahvar_api_key" value="<?php echo esc_attr(get_option('authora_shahvar_api_key')); ?>" class="regular-text">
+                                <input type="text" name="authora_shahvar_api_key" value="<?php echo esc_attr($shahvar_api_key); ?>" class="regular-text">
                             </td>
                         </tr>
                         <tr>
                             <th scope="row"><?php _e('شماره فرستنده', 'authora'); ?></th>
                             <td>
-                                <input type="text" name="authora_shahvar_sender_number" value="<?php echo esc_attr(get_option('authora_shahvar_sender_number')); ?>" class="regular-text">
+                                <input type="text" name="authora_shahvar_sender_number" value="<?php echo esc_attr($shahvar_sender_number); ?>" class="regular-text">
                             </td>
                         </tr>
                     </table>

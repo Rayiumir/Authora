@@ -28,6 +28,23 @@ jQuery(document).ready(function ($) {
         window.history.pushState({}, '', newUrl);
     });
 
+    // Handle form submission
+    $('form').on('submit', function(e) {
+        var activeTab = $('.authora-tab-content.active').attr('id');
+        $('input[name="active_tab"]').val(activeTab);
+        
+        // Store the selected driver value
+        var selectedDriver = $('#sms-driver-select').val();
+        localStorage.setItem('authora_selected_driver', selectedDriver);
+    });
+
+    // Restore selected driver on page load
+    var savedDriver = localStorage.getItem('authora_selected_driver');
+    if (savedDriver) {
+        $('#sms-driver-select').val(savedDriver);
+        toggleSmsSettings();
+    }
+
     // Initial state
     toggleSmsSettings();
 });

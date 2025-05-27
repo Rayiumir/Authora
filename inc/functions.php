@@ -141,10 +141,11 @@ function authoraDrivers( $mobile, $code ){
     $selected_driver = get_option('authora_sms_driver', 'smsir');
 
     switch ($selected_driver) {
-        case 'shahvarsms':
+        case 'shahvar':
             $driver = new ShahvarSMS(
                 get_option('authora_shahvar_api_key'),
                 get_option('authora_shahvar_sender_number'),
+                get_option('authora_shahvar_pattern_code')
             );
             break;
         case 'farazsms':

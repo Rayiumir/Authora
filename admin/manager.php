@@ -17,6 +17,7 @@ function authora_register_sms_settings() {
     // Shahvar Payam
     register_setting('authora_sms_settings', 'authora_shahvar_api_key', 'sanitize_text_field');
     register_setting('authora_sms_settings', 'authora_shahvar_sender_number', 'sanitize_text_field');
+    register_setting('authora_sms_settings', 'authora_shahvar_pattern_code', 'sanitize_text_field');
 
     // Handle settings update redirect for SMS settings
 
@@ -56,6 +57,9 @@ function authora_register_sms_settings() {
             }
             if (isset($_POST['authora_shahvar_sender_number'])) {
                 update_option('authora_shahvar_sender_number', sanitize_text_field($_POST['authora_shahvar_sender_number']));
+            }
+            if (isset($_POST['authora_shahvar_pattern_code'])) {
+                update_option('authora_shahvar_pattern_code', sanitize_text_field($_POST['authora_shahvar_pattern_code']));
             }
 
             $redirect_url = add_query_arg(
@@ -145,6 +149,7 @@ function authora_sms_settings_page() {
     // Shahvar Payam
     $shahvar_api_key = get_option('authora_shahvar_api_key');
     $shahvar_sender_number = get_option('authora_shahvar_sender_number');
+    $shahvar_pattern_code = get_option('authora_shahvar_pattern_code');
 
     // Get active tab from URL
     $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'general';
@@ -181,6 +186,7 @@ function authora_sms_settings_page() {
                                 <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>><?php _e('فراز اس‌ام‌اس', 'authora'); ?></option>
                                 <option value="shahvar" <?php selected($selected_driver, 'shahvar'); ?>><?php _e('شاهوار پیام', 'authora'); ?></option>
                             </select>
+                            <p class="description"><?php _e('درایور پیش‌فرض: SMS.ir', 'authora'); ?></p>
                         </td>
                     </tr>
                 </table>
@@ -236,6 +242,12 @@ function authora_sms_settings_page() {
                             <th scope="row"><?php _e('شماره فرستنده', 'authora'); ?></th>
                             <td>
                                 <input type="text" name="authora_shahvar_sender_number" value="<?php echo esc_attr($shahvar_sender_number); ?>" class="regular-text">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><?php _e('کد الگو', 'authora'); ?></th>
+                            <td>
+                                <input type="text" name="authora_shahvar_pattern_code" value="<?php echo esc_attr($shahvar_pattern_code); ?>" class="regular-text">
                             </td>
                         </tr>
                     </table>

@@ -1,0 +1,189 @@
+<?php
+/**
+ * Template Name: Authora Login Page
+ * 
+ * This is a custom template for the Authora login page
+ */
+
+get_header(); ?>
+
+<div class="authora-login-page">
+    <div class="authora-login-container">
+        <?php include( AUTHORA_LOGIN_VIEW . 'loginFormContent.php' ); ?>
+    </div>
+</div>
+
+<style>
+.authora-login-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.authora-login-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.authora-login-container .modal-close {
+    display: none;
+}
+
+.authora-login-container .authora-modal {
+    padding: 0;
+}
+
+.authora-login-container .form {
+    margin: 0;
+}
+
+.authora-login-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.authora-login-container p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.authora-login-container .authora-field {
+    margin-bottom: 20px;
+}
+
+.authora-login-container .authora-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.authora-login-container .authora-field input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.authora-login-container .authora-field input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.authora-login-container button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.authora-login-container button:hover {
+    transform: translateY(-2px);
+}
+
+.authora-login-container .authora-codes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.authora-login-container .authora-codes input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+}
+
+.authora-login-container .authora-codes input:focus {
+    border-color: #667eea;
+    outline: none;
+}
+
+.authora-login-container .authora-no-receive {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.authora-login-container .authora-resend {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.authora-login-container .authora-countdown {
+    color: #999;
+    margin-left: 10px;
+}
+
+.authora-login-container .authora-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.authora-login-container .authora-btn-secondary {
+    background: #f8f9fa !important;
+    color: #333 !important;
+    border: 2px solid #e1e5e9 !important;
+}
+
+.authora-login-container .authora-message {
+    display: none;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 10px 0;
+    background: #fff5f5;
+    color: #e53e3e;
+}
+
+.authora-login-container .authora-success {
+    text-align: center;
+    padding: 15px;
+    background: #f0fff4;
+    color: #38a169;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .authora-login-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .authora-login-container .authora-codes input {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+}
+</style>
+
+<?php get_footer(); ?>

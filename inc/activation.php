@@ -27,6 +27,12 @@ function authora_activation(){
 
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
     dbDelta( $sql );
+    
+    // Create login page
+    authora_create_login_page();
+    
+    // Flush rewrite rules
+    flush_rewrite_rules();
 }
 
 // Add mobile number column to users table

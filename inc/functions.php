@@ -169,3 +169,17 @@ function authoraDrivers( $mobile, $code ){
     return $manager->sendVerifyCode($mobile, $code);
 
 }
+
+/**
+ * Get login page URL
+ */
+function authora_get_login_page_url() {
+    return home_url('/login/');
+}
+
+/**
+ * Check if current page is login page
+ */
+function authora_is_login_page() {
+    return is_page('login');
+}

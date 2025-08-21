@@ -54,6 +54,7 @@ form#authora-login {
     margin-bottom: 25px;
     text-align: center;
     font-weight: bold;
+    font-family: inherit !important;
 }
 
 .authora-field {
@@ -72,7 +73,8 @@ form#authora-login {
     border: 1px solid #d2d2d2 !important;
     width: 100%;
     height: initial !important;
-    padding: 5px 0 !important;
+    padding: 10px 0 !important;
+    font-family: inherit !important;
     background: #F6F6F6;
     box-sizing: border-box;
     direction: ltr;
@@ -106,6 +108,7 @@ form#authora-login {
     border-radius: 10px;
     color: #FFF;
     font-weight: bold;
+    font-family: inherit !important;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -280,5 +283,49 @@ html[lang="en-US"] .authora-no-receive div {
 
 html[lang="en-US"] .authora-no-receive a {
     margin: 0 0 0 10px;
+}
+
+/* Embedded Login Form Styles */
+.authora-login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 2em;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.authora-login-form .modal-window {
+    position: static; /* Override fixed positioning */
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    background-color: transparent; /* Remove the overlay background */
+    box-shadow: none;
+}
+
+.authora-login-form .authora-container {
+    position: static; /* Override absolute positioning */
+    width: 100%;
+    transform: none;
+    padding: 0;
+}
+
+.authora-login-form .modal-close {
+    display: none;
+}
+
+.authora-login-form .authora-modal {
+    padding: 0;
+}
+
+.authora-login-form .authora-modal h2 {
+    margin-top: 0;
+}
+
+/* RTL Support for Embedded Form */
+html[lang="en-US"] .authora-login-form {
+    direction: ltr;
+    text-align: left;
 }
 

@@ -10,7 +10,7 @@ Description: Easy login with mobile number for WordPress.
 Author: Raymond Baghumian
 Version: 1.6.0
 Author URI: https://rayium.ir
-Text Domain: authora
+Text Domain: authora-easy-login-with-mobile-number
 Domain Path: /languages
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -63,14 +63,5 @@ $wpdb->authora_login = $wpdb->prefix . 'authora_login';
 register_activation_hook( __FILE__, 'authora_activation' );
 register_deactivation_hook( __FILE__, 'authora_activation' );
 
-// Languages Plugin
 
-function authora_textdomain() {
-    load_plugin_textdomain( 
-        'authora', 
-        false, 
-        dirname( plugin_basename( __FILE__ ) ) . '/languages' 
-    );
-}
-add_action( 'plugins_loaded', 'authora_textdomain' );
 

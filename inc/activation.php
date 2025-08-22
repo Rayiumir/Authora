@@ -37,13 +37,13 @@ function authora_activation(){
 
 // Add mobile number column to users table
 function authora_add_mobile_column($columns) {
-    $columns['mobile'] = __('شماره موبایل', 'authora');
+    $columns['mobile'] = __('شماره موبایل', 'authora-easy-login-with-mobile-number');
     return $columns;
 }
 add_filter('manage_users_columns', 'authora_add_mobile_column');
 
 function authora_add_mobile_to_contact_methods($methods) {
-    $methods['mobile'] = __('شماره موبایل', 'authora');
+    $methods['mobile'] = __('شماره موبایل', 'authora-easy-login-with-mobile-number');
     return $methods;
 }
 add_filter('user_contactmethods', 'authora_add_mobile_to_contact_methods');
@@ -61,10 +61,10 @@ add_action('manage_users_custom_column', 'authora_display_mobile_column', 10, 3)
 // Add mobile number field to user profile
 function authora_add_mobile_field($user) {
     ?>
-    <h3><?php _e('اطلاعات تماس', 'authora'); ?></h3>
+    <h3><?php _e('اطلاعات تماس', 'authora-easy-login-with-mobile-number'); ?></h3>
     <table class="form-table">
         <tr>
-            <th><label for="mobile"><?php _e('شماره موبایل', 'authora'); ?></label></th>
+            <th><label for="mobile"><?php _e('شماره موبایل', 'authora-easy-login-with-mobile-number'); ?></label></th>
             <td>
                 <input type="text" name="mobile" id="mobile" 
                     value="<?php echo esc_attr(get_user_meta($user->ID, 'mobile', true)); ?>" 

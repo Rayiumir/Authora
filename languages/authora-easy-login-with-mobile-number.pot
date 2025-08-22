@@ -1,0 +1,222 @@
+# Copyright (C) 2024 Raymond Baghumian
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Authora : Easy login with mobile number 1.6.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Rayiumir/Authora\n"
+"POT-Creation-Date: 2024-12-19 12:00+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: admin/manager.php:125
+#: admin/manager.php:126
+msgid "تنظیمات آتورا"
+msgstr ""
+
+#: admin/manager.php:157
+msgid "تنظیمات پیامک آتورا (Authora)"
+msgstr ""
+
+#: admin/manager.php:161
+msgid "تنظیمات با موفقیت ذخیره شد."
+msgstr ""
+
+#: admin/manager.php:166
+msgid "تنظیمات اپراتور"
+msgstr ""
+
+#: admin/manager.php:167
+msgid "یکپارچه‌سازی"
+msgstr ""
+
+#: admin/manager.php:181
+msgid "اپراتور پیامک"
+msgstr ""
+
+#: admin/manager.php:184
+msgid "SMS.ir"
+msgstr ""
+
+#: admin/manager.php:185
+msgid "فراز اس‌ام‌اس"
+msgstr ""
+
+#: admin/manager.php:186
+msgid "شاهوار پیام"
+msgstr ""
+
+#: admin/manager.php:188
+msgid "درایور پیش‌فرض: SMS.ir"
+msgstr ""
+
+#: admin/manager.php:194
+msgid "تنظیمات SMS.IR"
+msgstr ""
+
+#: admin/manager.php:197
+#: admin/manager.php:211
+#: admin/manager.php:235
+msgid "API کلید"
+msgstr ""
+
+#: admin/manager.php:201
+msgid "قالب ID"
+msgstr ""
+
+#: admin/manager.php:208
+msgid "تنظیمات فراز اس‌ام‌اس"
+msgstr ""
+
+#: admin/manager.php:217
+#: admin/manager.php:247
+msgid "کد الگو"
+msgstr ""
+
+#: admin/manager.php:223
+#: admin/manager.php:241
+msgid "شماره فرستنده"
+msgstr ""
+
+#: admin/manager.php:232
+msgid "تنظیمات شاهوار پیام"
+msgstr ""
+
+#: admin/manager.php:254
+#: admin/manager.php:288
+msgid "ذخیره تنظیمات"
+msgstr ""
+
+#: admin/manager.php:259
+msgid "یکپارچه‌سازی با وردپرس و ووکامرس"
+msgstr ""
+
+#: admin/manager.php:266
+msgid "ورود با شماره موبایل در فرم وردپرس"
+msgstr ""
+
+#: admin/manager.php:277
+msgid "ورود با شماره موبایل در فرم ووکامرس"
+msgstr ""
+
+#: inc/activation.php:39
+#: inc/activation.php:45
+#: inc/activation.php:66
+msgid "شماره موبایل"
+msgstr ""
+
+#: inc/activation.php:63
+msgid "اطلاعات تماس"
+msgstr ""
+
+#: inc/ajax.php:7
+#: inc/ajax.php:72
+msgid "An error occurred"
+msgstr ""
+
+#: inc/ajax.php:21
+msgid "Invalid mobile number"
+msgstr ""
+
+#: inc/ajax.php:58
+msgid "Enter the %d-digit code sent to %s"
+msgstr ""
+
+#: inc/ajax.php:87
+msgid "Invalid phone number"
+msgstr ""
+
+#: inc/ajax.php:102
+msgid "Your verification request was not found"
+msgstr ""
+
+#: inc/ajax.php:107
+msgid "Incorrect verification code, please try again"
+msgstr ""
+
+#: inc/ajax.php:112
+msgid "Code has expired, please try again"
+msgstr ""
+
+#: inc/ajax.php:143
+msgid "Login successful"
+msgstr ""
+
+#: inc/enqueue.php:39
+msgid "Sending..."
+msgstr ""
+
+#: inc/enqueue.php:40
+msgid "Resend"
+msgstr ""
+
+#: inc/enqueue.php:41
+msgid "An error occurred. Please try again."
+msgstr ""
+
+#: inc/enqueue.php:42
+msgid "Could not connect to server."
+msgstr ""
+
+#: inc/login-page.php:34
+#: inc/login-page.php:74
+#: public/modal.php:18
+msgid "ورود / عضویت"
+msgstr ""
+
+#: view/loginFormContent.php:5
+msgid "ورود/ثبت نام"
+msgstr ""
+
+#: view/loginFormContent.php:7
+msgid "برای راحتی شما ورود و ثبت نام را با شماره تلفن شما انجام دادیم"
+msgstr ""
+
+#: view/loginFormContent.php:10
+msgid "شماره همراه خود را وارد کنید"
+msgstr ""
+
+#: view/loginFormContent.php:20
+msgid "ارسال کد یکبار مصرف"
+msgstr ""
+
+#: view/loginFormContent.php:25
+msgid "تأیید شماره همراه"
+msgstr ""
+
+#: view/loginFormContent.php:26
+msgid "کد 5 رقمی ارسال شده به شماره  را وارد کنید"
+msgstr ""
+
+#: view/loginFormContent.php:33
+msgid "کد را دریافت نکردید؟"
+msgstr ""
+
+#: view/loginFormContent.php:35
+msgid "ارسال مجدد"
+msgstr ""
+
+#: view/loginFormContent.php:44
+msgid "ورود انجام شد"
+msgstr ""
+
+#: view/loginFormContent.php:50
+msgid "تأیید کد"
+msgstr ""
+
+#: view/loginFormContent.php:53
+msgid "اصلاح شماره"
+msgstr ""
+
+#. Plugin Name of the plugin
+msgid "Authora : Easy login with mobile number"
+msgstr ""
+
+#. Description of the plugin
+msgid "Easy login with mobile number for WordPress."
+msgstr ""

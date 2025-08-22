@@ -1,0 +1,223 @@
+# Persian (Farsi) translation for Authora : Easy login with mobile number
+# Copyright (C) 2024 Raymond Baghumian
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Authora : Easy login with mobile number 1.6.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Rayiumir/Authora\n"
+"POT-Creation-Date: 2024-12-19 12:00+0000\n"
+"PO-Revision-Date: 2024-12-19 12:00+0000\n"
+"Last-Translator: Raymond Baghumian <rayium@rayium.ir>\n"
+"Language-Team: Persian <fa@li.org>\n"
+"Language: fa_IR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: admin/manager.php:125
+#: admin/manager.php:126
+msgid "تنظیمات آتورا"
+msgstr "تنظیمات آتورا"
+
+#: admin/manager.php:157
+msgid "تنظیمات پیامک آتورا (Authora)"
+msgstr "تنظیمات پیامک آتورا (Authora)"
+
+#: admin/manager.php:161
+msgid "تنظیمات با موفقیت ذخیره شد."
+msgstr "تنظیمات با موفقیت ذخیره شد."
+
+#: admin/manager.php:166
+msgid "تنظیمات اپراتور"
+msgstr "تنظیمات اپراتور"
+
+#: admin/manager.php:167
+msgid "یکپارچه‌سازی"
+msgstr "یکپارچه‌سازی"
+
+#: admin/manager.php:181
+msgid "اپراتور پیامک"
+msgstr "اپراتور پیامک"
+
+#: admin/manager.php:184
+msgid "SMS.ir"
+msgstr "SMS.ir"
+
+#: admin/manager.php:185
+msgid "فراز اس‌ام‌اس"
+msgstr "فراز اس‌ام‌اس"
+
+#: admin/manager.php:186
+msgid "شاهوار پیام"
+msgstr "شاهوار پیام"
+
+#: admin/manager.php:188
+msgid "درایور پیش‌فرض: SMS.ir"
+msgstr "درایور پیش‌فرض: SMS.ir"
+
+#: admin/manager.php:194
+msgid "تنظیمات SMS.IR"
+msgstr "تنظیمات SMS.IR"
+
+#: admin/manager.php:197
+#: admin/manager.php:211
+#: admin/manager.php:235
+msgid "API کلید"
+msgstr "API کلید"
+
+#: admin/manager.php:201
+msgid "قالب ID"
+msgstr "قالب ID"
+
+#: admin/manager.php:208
+msgid "تنظیمات فراز اس‌ام‌اس"
+msgstr "تنظیمات فراز اس‌ام‌اس"
+
+#: admin/manager.php:217
+#: admin/manager.php:247
+msgid "کد الگو"
+msgstr "کد الگو"
+
+#: admin/manager.php:223
+#: admin/manager.php:241
+msgid "شماره فرستنده"
+msgstr "شماره فرستنده"
+
+#: admin/manager.php:232
+msgid "تنظیمات شاهوار پیام"
+msgstr "تنظیمات شاهوار پیام"
+
+#: admin/manager.php:254
+#: admin/manager.php:288
+msgid "ذخیره تنظیمات"
+msgstr "ذخیره تنظیمات"
+
+#: admin/manager.php:259
+msgid "یکپارچه‌سازی با وردپرس و ووکامرس"
+msgstr "یکپارچه‌سازی با وردپرس و ووکامرس"
+
+#: admin/manager.php:266
+msgid "ورود با شماره موبایل در فرم وردپرس"
+msgstr "ورود با شماره موبایل در فرم وردپرس"
+
+#: admin/manager.php:277
+msgid "ورود با شماره موبایل در فرم ووکامرس"
+msgstr "ورود با شماره موبایل در فرم ووکامرس"
+
+#: inc/activation.php:39
+#: inc/activation.php:45
+#: inc/activation.php:66
+msgid "شماره موبایل"
+msgstr "شماره موبایل"
+
+#: inc/activation.php:63
+msgid "اطلاعات تماس"
+msgstr "اطلاعات تماس"
+
+#: inc/ajax.php:7
+#: inc/ajax.php:72
+msgid "An error occurred"
+msgstr "خطایی رخ داد"
+
+#: inc/ajax.php:21
+msgid "Invalid mobile number"
+msgstr "شماره موبایل نامعتبر است"
+
+#: inc/ajax.php:58
+msgid "Enter the %d-digit code sent to %s"
+msgstr "کد %d رقمی ارسال شده به %s را وارد کنید"
+
+#: inc/ajax.php:87
+msgid "Invalid phone number"
+msgstr "شماره تلفن نامعتبر است"
+
+#: inc/ajax.php:102
+msgid "Your verification request was not found"
+msgstr "درخواست تأیید شما یافت نشد"
+
+#: inc/ajax.php:107
+msgid "Incorrect verification code, please try again"
+msgstr "کد تأیید نادرست است، لطفاً دوباره تلاش کنید"
+
+#: inc/ajax.php:112
+msgid "Code has expired, please try again"
+msgstr "کد منقضی شده است، لطفاً دوباره تلاش کنید"
+
+#: inc/ajax.php:143
+msgid "Login successful"
+msgstr "ورود موفقیت‌آمیز بود"
+
+#: inc/enqueue.php:39
+msgid "Sending..."
+msgstr "در حال ارسال..."
+
+#: inc/enqueue.php:40
+msgid "Resend"
+msgstr "ارسال مجدد"
+
+#: inc/enqueue.php:41
+msgid "An error occurred. Please try again."
+msgstr "خطایی رخ داد. لطفاً دوباره تلاش کنید."
+
+#: inc/enqueue.php:42
+msgid "Could not connect to server."
+msgstr "اتصال به سرور برقرار نشد."
+
+#: inc/login-page.php:34
+#: inc/login-page.php:74
+#: public/modal.php:18
+msgid "ورود / عضویت"
+msgstr "ورود / عضویت"
+
+#: view/loginFormContent.php:5
+msgid "ورود/ثبت نام"
+msgstr "ورود/ثبت نام"
+
+#: view/loginFormContent.php:7
+msgid "برای راحتی شما ورود و ثبت نام را با شماره تلفن شما انجام دادیم"
+msgstr "برای راحتی شما ورود و ثبت نام را با شماره تلفن شما انجام دادیم"
+
+#: view/loginFormContent.php:10
+msgid "شماره همراه خود را وارد کنید"
+msgstr "شماره همراه خود را وارد کنید"
+
+#: view/loginFormContent.php:20
+msgid "ارسال کد یکبار مصرف"
+msgstr "ارسال کد یکبار مصرف"
+
+#: view/loginFormContent.php:25
+msgid "تأیید شماره همراه"
+msgstr "تأیید شماره همراه"
+
+#: view/loginFormContent.php:26
+msgid "کد 5 رقمی ارسال شده به شماره  را وارد کنید"
+msgstr "کد 5 رقمی ارسال شده به شماره را وارد کنید"
+
+#: view/loginFormContent.php:33
+msgid "کد را دریافت نکردید؟"
+msgstr "کد را دریافت نکردید؟"
+
+#: view/loginFormContent.php:35
+msgid "ارسال مجدد"
+msgstr "ارسال مجدد"
+
+#: view/loginFormContent.php:44
+msgid "ورود انجام شد"
+msgstr "ورود انجام شد"
+
+#: view/loginFormContent.php:50
+msgid "تأیید کد"
+msgstr "تأیید کد"
+
+#: view/loginFormContent.php:53
+msgid "اصلاح شماره"
+msgstr "اصلاح شماره"
+
+#. Plugin Name of the plugin
+msgid "Authora : Easy login with mobile number"
+msgstr "آتورا : ورود آسان با شماره موبایل"
+
+#. Description of the plugin
+msgid "Easy login with mobile number for WordPress."
+msgstr "ورود آسان با شماره موبایل برای وردپرس."

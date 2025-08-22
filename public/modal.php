@@ -16,7 +16,7 @@ function authora_shortcode($atts) {
     }
 
     $atts = shortcode_atts(array(
-        'button_text' => __('ورود / عضویت', 'authora'),
+        'button_text' => __('ورود / عضویت', 'authora-easy-login-with-mobile-number'),
         'button_class' => 'buttonLogin',
         'container_class' => '',
         'show_modal' => 'true'

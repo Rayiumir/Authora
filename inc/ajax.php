@@ -5,7 +5,7 @@ defined('ABSPATH') || exit;
 function authora_login() {
     global $wpdb;
     $result = [
-        'message'   => __('An error occurred', 'authora')
+        'message'   => __('An error occurred', 'authora-easy-login-with-mobile-number')
     ];
 
     if(
@@ -19,7 +19,7 @@ function authora_login() {
     $mobile = sanitize_mobile( $_REQUEST['mobile'] );
 
     if( ! $mobile ){
-        $result['message']  = __('Invalid mobile number', 'authora');
+        $result['message']  = __('Invalid mobile number', 'authora-easy-login-with-mobile-number');
         wp_send_json_error( $result, 401 );
     }
 
@@ -56,7 +56,7 @@ function authora_login() {
         ]
     );
 
-    $result['message']  = sprintf(__('Enter the %d-digit code sent to %s', 'authora'), $digit, $mobile);
+    $result['message']  = sprintf(__('Enter the %d-digit code sent to %s', 'authora-easy-login-with-mobile-number'), $digit, $mobile);
     $result['code']     = $code;
     $result['duration'] = $expire;
     $result['mobile']    = $mobile;
@@ -70,7 +70,7 @@ add_action('wp_ajax_nopriv_authora_login', 'authora_login');
 function authora_verify(){
     
     $result = [
-        'message'   => __('An error occurred', 'authora')
+        'message'   => __('An error occurred', 'authora-easy-login-with-mobile-number')
     ];
 
     if(
@@ -85,7 +85,7 @@ function authora_verify(){
     $mobile  = sanitize_mobile( $_REQUEST['mobile'] );
 
     if( !$mobile ){
-        $result['message']  = __('Invalid phone number', 'authora');
+        $result['message']  = __('Invalid phone number', 'authora-easy-login-with-mobile-number');
         wp_send_json_error( $result, 401 );
     }
 
@@ -100,17 +100,17 @@ function authora_verify(){
     );
 
     if( !$verify ){
-        $result['message']  = __('Your verification request was not found', 'authora');
+        $result['message']  = __('Your verification request was not found', 'authora-easy-login-with-mobile-number');
         wp_send_json_error( $result, 401 );
     }
 
     if( $verify->code != $code ){
-        $result['message']  = __('Incorrect verification code, please try again', 'authora');
+        $result['message']  = __('Incorrect verification code, please try again', 'authora-easy-login-with-mobile-number');
         wp_send_json_error( $result, 401 );
     }
 
     if( current_time('timestamp') >= strtotime( $verify->expired_at ) ){
-        $result['message']  = __('Code has expired, please try again', 'authora');
+        $result['message']  = __('Code has expired, please try again', 'authora-easy-login-with-mobile-number');
         wp_send_json_error( $result, 401 );
     }
     
@@ -141,7 +141,7 @@ function authora_verify(){
         ]
     );
 
-    $result['message'] = __('Login successful', 'authora');
+    $result['message'] = __('Login successful', 'authora-easy-login-with-mobile-number');
     wp_send_json_success( $result, 200 );
     
 }

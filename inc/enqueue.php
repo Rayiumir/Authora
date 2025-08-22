@@ -37,10 +37,10 @@ function authora_public_scripts(){
         'nonce' => wp_create_nonce('authora_login'),
 
         'i18n' => array(
-            'sending' => __('Sending...', 'authora'),
-            'resend' => __('Resend', 'authora'),
-            'error_occurred' => __('An error occurred. Please try again.', 'authora'),
-            'connection_error' => __('Could not connect to server.', 'authora')
+                    'sending' => __('Sending...', 'authora-easy-login-with-mobile-number'),
+        'resend' => __('Resend', 'authora-easy-login-with-mobile-number'),
+        'error_occurred' => __('An error occurred. Please try again.', 'authora-easy-login-with-mobile-number'),
+        'connection_error' => __('Could not connect to server.', 'authora-easy-login-with-mobile-number')
         )
     ]);
 

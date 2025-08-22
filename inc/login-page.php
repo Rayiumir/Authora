@@ -32,7 +32,7 @@ function authora_create_login_page() {
     
     if (!$login_page) {
         $page_data = array(
-            'post_title'    => __('ورود / ثبت نام', 'authora'),
+            'post_title'    => __('ورود / ثبت نام', 'authora-easy-login-with-mobile-number'),
             'post_name'     => 'login',
             'post_status'   => 'publish',
             'post_type'     => 'page',
@@ -72,7 +72,7 @@ function authora_redirect_to_login() {
 function authora_add_login_link_to_menu($items, $args) {
     if (!is_user_logged_in()) {
         $login_url = authora_get_login_page_url();
-        $login_text = __('ورود / ثبت نام', 'authora');
+        $login_text = __('ورود / ثبت نام', 'authora-easy-login-with-mobile-number');
         $items .= '<li><a href="' . esc_url($login_url) . '">' . esc_html($login_text) . '</a></li>';
     }
     return $items;

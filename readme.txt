@@ -4,7 +4,7 @@ Tags: otp, mobile login, SMS login, OTP login, WordPress authentication, login w
 Requires at least: 5.0
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.3.0
+Stable tag: 1.6.0
 License: GPL v2.0 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,14 @@ In today's world, users are tired of lengthy registration and login forms. Autho
 ```php
 <?php echo do_shortcode("[authora-login]"); ?>
 ```
+- Use Pages :
+
+```php
+<?php echo do_shortcode("[authora-login show_modal="false"]"); ?>
+or
+[authora-login show_modal="false"]
+```
+
 
 ## Frequently Asked Questions ##
 

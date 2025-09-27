@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 
 require_once(__DIR__ . '/../SmsDriverInterface.php');
 
-class SmsIrDriver implements SmsDriverInterface {
+class AuthoraSmsIrDriver implements AuthoraSmsDriverInterface {
     
     protected $apiKey;
     protected $templateId;
@@ -20,7 +20,7 @@ class SmsIrDriver implements SmsDriverInterface {
             'TemplateId' => $this->templateId,
             'Parameters' => [
                 ['Name' => 'CODE', 'Value' => $code],
-                ['Name' => 'DOMAIN', 'Value' => '@' . $_SERVER['HTTP_HOST'] ?? ''],
+                ['Name' => 'DOMAIN', 'Value' => '@' . sanitize_text_field($_SERVER['HTTP_HOST'] ?? '')],
                 ['Name' => 'OTP_CODE', 'Value' => '#' . $code],
             ]
         ];

@@ -90,6 +90,39 @@ If a user does not receive the SMS, they can use the "Resend" option. Also, make
 
 Yes, you can customize the appearance by editing the plugin's CSS files or adding your own custom CSS.
 
+## External services ##
+
+This plugin connects to external SMS service providers to send verification codes. The following data is sent to these services:
+
+- Mobile number: The user's mobile phone number for sending SMS verification codes.
+- Verification code: A randomly generated numeric code for authentication.
+- API credentials: Your configured API keys and settings for the selected SMS provider.
+
+The plugin supports the following SMS providers:
+
+### SMS.ir ###
+- **Service**: SMS.ir (https://sms.ir)
+- **Purpose**: Sending SMS verification codes for login/registration.
+- **Data sent**: Mobile number, verification code, domain name (for branding).
+- **Terms of Service**: https://sms.ir/terms
+- **Privacy Policy**: https://sms.ir/privacy
+
+### Faraz SMS ###
+- **Service**: Faraz SMS (https://farazsms.com)
+- **Purpose**: Sending SMS verification codes for login/registration.
+- **Data sent**: Mobile number, verification code.
+- **Terms of Service**: https://farazsms.com/terms
+- **Privacy Policy**: https://farazsms.com/privacy
+
+### Shahvar Payam ###
+- **Service**: Shahvar Payam (https://shahvarpayam.com)
+- **Purpose**: Sending SMS verification codes for login/registration.
+- **Data sent**: Mobile number, verification code.
+- **Terms of Service**: https://shahvarpayam.com/terms
+- **Privacy Policy**: https://shahvarpayam.com/privacy
+
+All communications with external services are done securely over HTTPS. The plugin does not store or transmit any personal data beyond what is necessary for SMS delivery.
+
 ### How can I get support? ###
 
 For support, you can visit the plugin's GitHub page:

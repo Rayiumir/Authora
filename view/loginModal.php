@@ -1,4 +1,6 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 $digits = 5;
 ?>
 <div id="modal" class="modal-window" lang="<?php echo get_locale(); ?>" dir="<?php echo is_rtl() ? 'rtl' : 'ltr'; ?>">

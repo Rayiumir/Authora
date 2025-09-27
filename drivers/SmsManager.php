@@ -1,7 +1,7 @@
 <?php
 
-if (!class_exists('SmsManager')) {
-    class SmsManager {
+if (!class_exists('AuthoraSmsManager')) {
+    class AuthoraSmsManager {
         private static $instance = null;
         private $driver = null;
 
@@ -15,8 +15,8 @@ if (!class_exists('SmsManager')) {
         }
 
         public function setDriver($driver) {
-            if (!$driver instanceof SmsDriverInterface) {
-                throw new Exception('Driver must implement SmsDriverInterface');
+            if (!$driver instanceof AuthoraSmsDriverInterface) {
+                throw new Exception('Driver must implement AuthoraSmsDriverInterface');
             }
             $this->driver = $driver;
         }

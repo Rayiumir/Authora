@@ -11,8 +11,8 @@ function authora_login() {
     if(
         ! isset( $_REQUEST['mobile'] ) ||
         ! isset( $_REQUEST['_wpnonce'] ) ||
-        ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'authora-login' )
-    ){ 
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'authora-login' )
+    ){
         wp_send_json_error( $result, 401 );
     }
 
@@ -73,11 +73,12 @@ function authora_verify(){
         'message'   => __('An error occurred', 'authora-easy-login-with-mobile-number')
     ];
 
+    $mobile_raw = isset($_REQUEST['mobile']) ? sanitize_text_field($_REQUEST['mobile']) : '';
     if(
         ! isset( $_REQUEST['mobile'] ) ||
         ! isset( $_REQUEST['code'] ) ||
         ! isset( $_REQUEST['_wpnonce'] ) ||
-        ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'verify'.  $_REQUEST['mobile'] )
+        ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'verify' . $mobile_raw )
     ){
         wp_send_json_error( $result, 401 );
     }
@@ -92,9 +93,10 @@ function authora_verify(){
     $code   = sanitize_text_field( $_REQUEST['code'] );
 
     global $wpdb;
+    $table_name = $wpdb->authora_login;
     $verify = $wpdb->get_row(
         $wpdb->prepare(
-            "SELECT * FROM {$wpdb->authora_login} WHERE mobile = %s ORDER BY created_at DESC",
+            "SELECT * FROM {$table_name} WHERE mobile = %s ORDER BY created_at DESC",
             $mobile
         )
     );

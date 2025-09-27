@@ -25,7 +25,7 @@ function authora_register_sms_settings() {
         $active_tab = isset($_POST['active_tab']) ? sanitize_text_field($_POST['active_tab']) : 'general';
         
         // Only redirect if settings were actually saved
-        if (isset($_POST['_wpnonce']) && wp_verify_nonce($_POST['_wpnonce'], 'authora_sms_settings-options')) {
+        if (isset($_POST['_wpnonce']) && wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'authora_sms_settings-options')) {
             // Save the selected driver
             if (isset($_POST['authora_sms_driver'])) {
                 update_option('authora_sms_driver', sanitize_text_field($_POST['authora_sms_driver']));
@@ -84,7 +84,7 @@ function authora_handle_integration_settings_save() {
     // Check if our integration form was submitted
     if (isset($_POST['authora_integration_settings_submit']) && isset($_POST['_wpnonce'])) {
         // Verify nonce
-        if (!wp_verify_nonce($_POST['_wpnonce'], 'authora_integration_settings_nonce')) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['_wpnonce'])), 'authora_integration_settings_nonce')) {
             // Nonce verification failed, handle error or just return
             wp_die('Security check failed');
         }
@@ -155,17 +155,17 @@ function authora_sms_settings_page() {
     $active_tab = isset($_GET['tab']) ? sanitize_text_field($_GET['tab']) : 'general';
     ?>
     <div class="wrap authora-sms-settings">
-        <h1><?php _e('تنظیمات پیامک آتورا (Authora)', 'authora-easy-login-with-mobile-number'); ?></h1>
+        <h1><?php esc_html_e('تنظیمات پیامک آتورا (Authora)', 'authora-easy-login-with-mobile-number'); ?></h1>
 
         <?php if (isset($_GET['settings-updated'])) : ?>
             <div class="authora-notice authora-notice-success">
-                <?php _e('تنظیمات با موفقیت ذخیره شد.', 'authora-easy-login-with-mobile-number'); ?>
+                <?php esc_html_e('تنظیمات با موفقیت ذخیره شد.', 'authora-easy-login-with-mobile-number'); ?>
             </div>
         <?php endif; ?>
 
         <div class="authora-tabs">
-            <a href="#general" class="nav-tab <?php echo $active_tab === 'general' ? 'nav-tab-active' : ''; ?>"><?php _e('تنظیمات اپراتور', 'authora-easy-login-with-mobile-number'); ?></a>
-            <a href="#integration" class="nav-tab <?php echo $active_tab === 'integration' ? 'nav-tab-active' : ''; ?>"><?php _e('یکپارچه‌سازی', 'authora-easy-login-with-mobile-number'); ?></a>
+            <a href="#general" class="nav-tab <?php echo $active_tab === 'general' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('تنظیمات اپراتور', 'authora-easy-login-with-mobile-number'); ?></a>
+            <a href="#integration" class="nav-tab <?php echo $active_tab === 'integration' ? 'nav-tab-active' : ''; ?>"><?php esc_html_e('یکپارچه‌سازی', 'authora-easy-login-with-mobile-number'); ?></a>
         </div>
 
         <div id="general" class="authora-tab-content <?php echo $active_tab === 'general' ? 'active' : ''; ?>">
@@ -179,49 +179,49 @@ function authora_sms_settings_page() {
                 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><?php _e('اپراتور پیامک', 'authora-easy-login-with-mobile-number'); ?></th>
+                        <th scope="row"><?php esc_html_e('اپراتور پیامک', 'authora-easy-login-with-mobile-number'); ?></th>
                         <td>
                             <select name="authora_sms_driver" id="sms-driver-select">
-                                <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>><?php _e('SMS.ir', 'authora-easy-login-with-mobile-number'); ?></option>
-                                <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>><?php _e('فراز اس‌ام‌اس', 'authora-easy-login-with-mobile-number'); ?></option>
-                                <option value="shahvar" <?php selected($selected_driver, 'shahvar'); ?>><?php _e('شاهوار پیام', 'authora-easy-login-with-mobile-number'); ?></option>
+                                <option value="smsir" <?php selected($selected_driver, 'smsir'); ?>><?php esc_html_e('SMS.ir', 'authora-easy-login-with-mobile-number'); ?></option>
+                                <option value="farazsms" <?php selected($selected_driver, 'farazsms'); ?>><?php esc_html_e('فراز اس‌ام‌اس', 'authora-easy-login-with-mobile-number'); ?></option>
+                                <option value="shahvar" <?php selected($selected_driver, 'shahvar'); ?>><?php esc_html_e('شاهوار پیام', 'authora-easy-login-with-mobile-number'); ?></option>
                             </select>
-                            <p class="description"><?php _e('درایور پیش‌فرض: SMS.ir', 'authora-easy-login-with-mobile-number'); ?></p>
+                            <p class="description"><?php esc_html_e('درایور پیش‌فرض: SMS.ir', 'authora-easy-login-with-mobile-number'); ?></p>
                         </td>
                     </tr>
                 </table>
 
                 <div id="smsir-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'smsir' ? 'block' : 'none'; ?>">
-                    <h3><?php _e('تنظیمات SMS.IR', 'authora-easy-login-with-mobile-number'); ?></h3>
+                    <h3><?php esc_html_e('تنظیمات SMS.IR', 'authora-easy-login-with-mobile-number'); ?></h3>
                     <table class="form-table">
                         <tr>
-                            <th scope="row"><?php _e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td><input type="text" name="authora_smsir_api_key" value="<?php echo esc_attr($smsir_api_key); ?>" class="regular-text" /></td>
                         </tr>
                         <tr>
-                            <th scope="row"><?php _e('قالب ID', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('قالب ID', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td><input type="number" name="authora_smsir_template_id" value="<?php echo esc_attr($smsir_template_id); ?>" class="regular-text" /></td>
                         </tr>
                     </table>
                 </div>
 
                 <div id="farazsms-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'farazsms' ? 'block' : 'none'; ?>">
-                    <h3><?php _e('تنظیمات فراز اس‌ام‌اس', 'authora-easy-login-with-mobile-number'); ?></h3>
+                    <h3><?php esc_html_e('تنظیمات فراز اس‌ام‌اس', 'authora-easy-login-with-mobile-number'); ?></h3>
                     <table class="form-table">
                         <tr>
-                            <th scope="row"><?php _e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_farazsms_api_key" value="<?php echo esc_attr($farazsms_api_key); ?>" class="regular-text">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><?php _e('کد الگو', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('کد الگو', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_farazsms_pattern_code" value="<?php echo esc_attr($farazsms_pattern_code); ?>" class="regular-text">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><?php _e('شماره فرستنده', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('شماره فرستنده', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_farazsms_sender_number" value="<?php echo esc_attr($farazsms_sender_number); ?>" class="regular-text">
                             </td>
@@ -230,22 +230,22 @@ function authora_sms_settings_page() {
                 </div>
 
                 <div id="shahvar-settings" class="sms-settings" style="display: <?php echo $selected_driver === 'shahvar' ? 'block' : 'none'; ?>">
-                    <h3><?php _e('تنظیمات شاهوار پیام', 'authora-easy-login-with-mobile-number'); ?></h3>
+                    <h3><?php esc_html_e('تنظیمات شاهوار پیام', 'authora-easy-login-with-mobile-number'); ?></h3>
                     <table class="form-table">
                         <tr>
-                            <th scope="row"><?php _e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('API کلید', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_shahvar_api_key" value="<?php echo esc_attr($shahvar_api_key); ?>" class="regular-text">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><?php _e('شماره فرستنده', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('شماره فرستنده', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_shahvar_sender_number" value="<?php echo esc_attr($shahvar_sender_number); ?>" class="regular-text">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row"><?php _e('کد الگو', 'authora-easy-login-with-mobile-number'); ?></th>
+                            <th scope="row"><?php esc_html_e('کد الگو', 'authora-easy-login-with-mobile-number'); ?></th>
                             <td>
                                 <input type="text" name="authora_shahvar_pattern_code" value="<?php echo esc_attr($shahvar_pattern_code); ?>" class="regular-text">
                             </td>
@@ -257,14 +257,14 @@ function authora_sms_settings_page() {
         </div>
 
         <div id="integration" class="authora-tab-content <?php echo $active_tab === 'integration' ? 'active' : ''; ?>">
-            <h3><?php _e('یکپارچه‌سازی با وردپرس و ووکامرس', 'authora-easy-login-with-mobile-number'); ?></h3>
+            <h3><?php esc_html_e('یکپارچه‌سازی با وردپرس و ووکامرس', 'authora-easy-login-with-mobile-number'); ?></h3>
             <form method="post" action="" id="integration-form">
                 <?php wp_nonce_field('authora_integration_settings_nonce'); ?>
                 <input type="hidden" name="active_tab" value="integration">
                 
                 <table class="form-table">
                     <tr>
-                        <th scope="row"><?php _e('ورود با شماره موبایل در فرم وردپرس', 'authora-easy-login-with-mobile-number'); ?></th>
+                        <th scope="row"><?php esc_html_e('ورود با شماره موبایل در فرم وردپرس', 'authora-easy-login-with-mobile-number'); ?></th>
                         <td width="500px">
                             <label class="toggle-label">
                                 <span class="toggle-switch">
@@ -275,7 +275,7 @@ function authora_sms_settings_page() {
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><?php _e('ورود با شماره موبایل در فرم ووکامرس', 'authora-easy-login-with-mobile-number'); ?></th>
+                        <th scope="row"><?php esc_html_e('ورود با شماره موبایل در فرم ووکامرس', 'authora-easy-login-with-mobile-number'); ?></th>
                         <td width="500px">
                             <label class="toggle-label">
                                 <span class="toggle-switch">

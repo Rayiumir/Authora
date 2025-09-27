@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 
 require_once(__DIR__ . '/../SmsDriverInterface.php');
 
-class ShahvarSMS implements SmsDriverInterface {
+class AuthoraShahvarSMS implements AuthoraSmsDriverInterface {
     
     protected $apiKey;
     protected $patternCode;

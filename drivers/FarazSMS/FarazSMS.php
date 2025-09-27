@@ -4,7 +4,7 @@ defined('ABSPATH') || exit;
 
 require_once(__DIR__ . '/../SmsDriverInterface.php');
 
-class FarazSMS implements SmsDriverInterface {
+class AuthoraFarazSMS implements AuthoraSmsDriverInterface {
     
     protected $apiKey;
     protected $patternCode;

@@ -142,14 +142,14 @@ function authoraDrivers( $mobile, $code ){
 
     switch ($selected_driver) {
         case 'shahvar':
-            $driver = new ShahvarSMS(
+            $driver = new AuthoraShahvarSMS(
                 get_option('authora_shahvar_api_key'),
                 get_option('authora_shahvar_sender_number'),
                 get_option('authora_shahvar_pattern_code')
             );
             break;
         case 'farazsms':
-            $driver = new FarazSMS(
+            $driver = new AuthoraFarazSMS(
                 get_option('authora_farazsms_api_key'),
                 get_option('authora_farazsms_pattern_code'),
                 get_option('authora_farazsms_sender_number')
@@ -157,14 +157,14 @@ function authoraDrivers( $mobile, $code ){
             break;
         case 'smsir':
         default:
-            $driver = new SmsIrDriver(
+            $driver = new AuthoraSmsIrDriver(
                 get_option('authora_smsir_api_key'),
                 get_option('authora_smsir_template_id')
             );
             break;
     }
 
-    $manager = SmsManager::getInstance();
+    $manager = AuthoraSmsManager::getInstance();
     $manager->setDriver($driver);
     return $manager->sendVerifyCode($mobile, $code);
 
@@ -182,4 +182,11 @@ function authora_get_login_page_url() {
  */
 function authora_is_login_page() {
     return is_page('login');
+}
+
+/**
+ * Check if current page is WooCommerce login page
+ */
+function authora_is_woocommerce_login() {
+    return function_exists('is_account_page') && is_account_page() && !is_user_logged_in();
 }

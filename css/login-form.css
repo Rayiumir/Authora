@@ -1,0 +1,33 @@
+.authora-form-container {
+    position: relative;
+}
+
+.authora-mobile-login {
+    display: block;
+}
+
+.authora-regular-login {
+    display: none !important;
+}
+
+.authora-verification-code {
+    display: none;
+}
+
+.authora-verification-code.active {
+    display: block;
+}
+
+.authora-error {
+    color: #dc3232;
+    margin: 5px 0;
+}
+
+.authora-success {
+    color: #46b450;
+    margin: 5px 0;
+}
+
+.woocommerce-LostPassword {
+    display: none !important;
+}

@@ -64,11 +64,12 @@ function authora_add_mobile_field($user) {
     <h3><?php _e('اطلاعات تماس', 'authora-easy-login-with-mobile-number'); ?></h3>
     <table class="form-table">
         <tr>
-            <th><label for="mobile"><?php _e('شماره موبایل', 'authora-easy-login-with-mobile-number'); ?></label></th>
+            <th><label for="mobile"><?php esc_html_e('شماره موبایل', 'authora-easy-login-with-mobile-number'); ?></label></th>
             <td>
-                <input type="text" name="mobile" id="mobile" 
-                    value="<?php echo esc_attr(get_user_meta($user->ID, 'mobile', true)); ?>" 
+                <input type="text" name="mobile" id="mobile"
+                    value="<?php echo esc_attr(get_user_meta($user->ID, 'mobile', true)); ?>"
                     class="regular-text" />
+                <?php wp_nonce_field('authora_save_mobile_' . $user->ID, 'authora_mobile_nonce'); ?>
             </td>
         </tr>
     </table>
@@ -89,7 +90,12 @@ function authora_save_mobile_field($user_id) {
     if (!current_user_can('edit_user', $user_id)) {
         return false;
     }
-    
+
+    // Check nonce
+    if (!isset($_POST['authora_mobile_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['authora_mobile_nonce'])), 'authora_save_mobile_' . $user_id)) {
+        return false;
+    }
+
     if (isset($_POST['mobile'])) {
         $mobile = sanitize_text_field($_POST['mobile']);
         update_user_meta($user_id, 'mobile', $mobile);

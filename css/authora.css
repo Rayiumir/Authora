@@ -183,6 +183,10 @@ p.authora-message.active {
     justify-content: space-between;
 }
 
+.authora-no-receive p {
+  margin-top: 0px;
+}
+
 a.authora-resend, a.authora-resend:hover {
     color: #333;
     font-weight: 500;

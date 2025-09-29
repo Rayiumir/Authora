@@ -51,7 +51,7 @@ $digits = 5;
             </svg>
             <span></span>
         </p>
-        <div class="authora-success" style="display:none;"><?php _e('ورود انجام شد', 'authora-easy-login-with-mobile-number'); ?></div>
+        <div class="authora-success" style="display:none;"><?php esc_html_e('ورود انجام شد', 'authora-easy-login-with-mobile-number'); ?></div>
         <div class="authora-buttons">
             <input type="hidden" name="code" id="authora-verify-code" value="">
             <input type="hidden" name="mobile" value="">

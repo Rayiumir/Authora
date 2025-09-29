@@ -78,7 +78,7 @@ function authora_verify(){
         ! isset( $_REQUEST['mobile'] ) ||
         ! isset( $_REQUEST['code'] ) ||
         ! isset( $_REQUEST['_wpnonce'] ) ||
-        ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'verify' . $mobile_raw )
+        ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'verify' . $mobile_raw )
     ){
         wp_send_json_error( $result, 401 );
     }

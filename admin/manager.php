@@ -89,19 +89,13 @@ function authora_handle_integration_settings_save() {
             wp_die('Security check failed');
         }
 
-        // Log received POST data
-        error_log('Authora: Integration settings form submitted.');
-        error_log('Authora: POST data: ' . print_r($_POST, true));
-
         // Sanitize and update mobile login setting
         $enable_mobile_login = isset($_POST['authora_enable_mobile_login']) ? '1' : '0';
         update_option('authora_enable_mobile_login', $enable_mobile_login);
-        error_log('Authora: Saved authora_enable_mobile_login: ' . $enable_mobile_login);
 
         // Sanitize and update WooCommerce mobile login setting
         $enable_woo_mobile_login = isset($_POST['authora_enable_woo_mobile_login']) ? '1' : '0';
         update_option('authora_enable_woo_mobile_login', $enable_woo_mobile_login);
-        error_log('Authora: Saved authora_enable_woo_mobile_login: ' . $enable_woo_mobile_login);
 
         // Redirect back to the settings page, staying on the integration tab
         $redirect_url = add_query_arg(

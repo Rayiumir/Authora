@@ -55,13 +55,6 @@ function authora_handle_send_code() {
     $_SESSION['authora_verification_mobile'] = $mobile;
     $_SESSION['authora_verification_time'] = time();
     
-    // Debug information
-    error_log('Setting verification code:');
-    error_log('Mobile: ' . $mobile);
-    error_log('Code: ' . $code);
-    error_log('Session ID: ' . session_id());
-    error_log('Session Data: ' . print_r($_SESSION, true));
-    
     // Send SMS using authoraDrivers
     try {
         $result = authoraDrivers($mobile, $code);
@@ -100,18 +93,10 @@ function authora_handle_verify_code() {
     }
 
     // Get stored code from session
-    $stored_code = isset($_SESSION['authora_verification_code']) ? (string)$_SESSION['authora_verification_code'] : '';
-    $stored_mobile = isset($_SESSION['authora_verification_mobile']) ? $_SESSION['authora_verification_mobile'] : '';
+    $stored_code = isset($_SESSION['authora_verification_code']) ? sanitize_text_field((string)$_SESSION['authora_verification_code']) : '';
+    $stored_mobile = isset($_SESSION['authora_verification_mobile']) ? sanitize_text_field($_SESSION['authora_verification_mobile']) : '';
     $stored_time = isset($_SESSION['authora_verification_time']) ? (int)$_SESSION['authora_verification_time'] : 0;
-    
-    // Debug information
-    error_log('Verifying code:');
-    error_log('Mobile: ' . $mobile);
-    error_log('Entered Code: ' . $code);
-    error_log('Stored Code: ' . $stored_code);
-    error_log('Stored Mobile: ' . $stored_mobile);
-    error_log('Session ID: ' . session_id());
-    error_log('Session Data: ' . print_r($_SESSION, true));
+
     
     // Check if code is expired (15 minutes)
     if (time() - $stored_time > 15 * 60) {

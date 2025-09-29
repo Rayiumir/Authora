@@ -61,7 +61,7 @@ add_action('manage_users_custom_column', 'authora_display_mobile_column', 10, 3)
 // Add mobile number field to user profile
 function authora_add_mobile_field($user) {
     ?>
-    <h3><?php _e('اطلاعات تماس', 'authora-easy-login-with-mobile-number'); ?></h3>
+    <h3><?php esc_html_e('اطلاعات تماس', 'authora-easy-login-with-mobile-number'); ?></h3>
     <table class="form-table">
         <tr>
             <th><label for="mobile"><?php esc_html_e('شماره موبایل', 'authora-easy-login-with-mobile-number'); ?></label></th>
